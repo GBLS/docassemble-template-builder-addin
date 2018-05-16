@@ -1,1 +1,1 @@
-web: ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --mode development --https
+web: ./node_modules/webpack-dev-server/bin/webpack-dev-server.js
