@@ -4,7 +4,7 @@
   "author": "",
   "version": "0.1.0",
   "scripts": {
-    "start": "webpack-dev-server --mode development",
+    "start": "webpack-dev-server --mode development --https",
     "build": "webpack --mode production",
     "validate": "./node_modules/.bin/validate-office-addin"
   },
