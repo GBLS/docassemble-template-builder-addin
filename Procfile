@@ -1,1 +1,1 @@
-web: node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js
+web: webpack-dev-server --port $PORT --host 0.0.0.0 
