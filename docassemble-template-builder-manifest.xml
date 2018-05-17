@@ -24,7 +24,7 @@
   <HighResolutionIconUrl DefaultValue="https://calm-tor-43985.herokuapp.com/assets/icon-80.png"/>
 
   <!--If you plan to submit this add-in to the Office Store, uncomment the SupportUrl element below-->
-  <SupportUrl DefaultValue="https://www.nonprofittechy.com/projects/projects-docassemble-template-builder/">
+  <SupportUrl DefaultValue="https://www.nonprofittechy.com/projects/projects-docassemble-template-builder/"/>
 
   <!-- Domains that will be allowed when navigating. For example, if you use ShowTaskpane and then have an href link, navigation will only be allowed if the domain is on this list. -->
   <AppDomains>
@@ -136,7 +136,7 @@
       <!-- LongStrings max characters==250. -->
       <bt:LongStrings>
         <bt:String id="DTB.TaskpaneButton.Tooltip" DefaultValue="Click to Show Help" />
-        <bt:String id="DTB.GetStarted.Description" DefaultValue="The Docassemble Template Builder loaded successfully. Click Home | Show Docassemble Help to get started./>
+        <bt:String id="DTB.GetStarted.Description" DefaultValue="The Docassemble Template Builder loaded successfully. Click Home | Show Docassemble Help to get started."/>
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>
