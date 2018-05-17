@@ -26,7 +26,10 @@ async function run() {
             range.load('text');
 
             // Update font color
-            range.font.color = 'red';
+            //range.font.color = 'red';
+
+            range.insertParagraph('{%p if myVar %}','Before');
+            range.insertParagraph('{%p endif %}');
 
             await context.sync();
             console.log(`The selected text was ${range.text}.`);
