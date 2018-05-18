@@ -9,6 +9,7 @@ $(document).ready(() => {
     $('#if-para').click(if_para);
     $('#if-inline').click(if_inline);
     $('#list-para').click(list_para);
+    $('#insert-template').click(insert_template);
 });
   
 // The initialize function must be run each time a new page is loaded
@@ -19,10 +20,7 @@ Office.initialize = (reason) => {
 
 async function if_para() {
     return Word.run(async context => {
-            /**
-             * Insert your Word code here
-             */
-            const range = context.document.getSelection();
+             const range = context.document.getSelection();
             
             // Read the range text
             range.load('text');
@@ -37,9 +35,6 @@ async function if_para() {
 
 async function if_inline() {
     return Word.run(async context => {
-            /**
-             * Insert your Word code here
-             */
             const range = context.document.getSelection();
             
             // Read the range text
@@ -55,17 +50,27 @@ async function if_inline() {
 
 async function list_para() {
     return Word.run(async context => {
-            /**
-             * Insert your Word code here
-             */
             const range = context.document.getSelection();
             
             // Read the range text
             range.load('text');
             range.insertText('{{ item }}','Replace');
-            range.insertParagraph('{% for item in myVar %}','Before');
-            range.insertParagraph('{% endfor %}','After');
+            range.insertParagraph('{%p for item in myVar %}','Before');
+            range.insertParagraph('{%p endfor %}','After');
 
+            await context.sync();
+            console.log(`The selected text was ${range.text}.`);
+        });
+}
+
+async function insert_template() {
+    return Word.run(async context => {
+            const range = context.document.getSelection();
+            
+            // Read the range text
+            range.load('text');
+            range.insertText('{{p include_docx_template("myTemplate.docx") }}','Replace');
+ 
             await context.sync();
             console.log(`The selected text was ${range.text}.`);
         });
