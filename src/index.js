@@ -8,6 +8,7 @@ import * as OfficeHelpers from '@microsoft/office-js-helpers';
 $(document).ready(() => {
     $('#if-para').click(if_para);
     $('#if-inline').click(if_inline);
+    $('#list-para').click(list_para);
 });
   
 // The initialize function must be run each time a new page is loaded
@@ -25,9 +26,6 @@ async function if_para() {
             
             // Read the range text
             range.load('text');
-
-            // Update font color
-            //range.font.color = 'red';
 
             range.insertParagraph('{%p if myVar %}','Before');
             range.insertParagraph('{%p endif %}','After');
@@ -47,11 +45,26 @@ async function if_inline() {
             // Read the range text
             range.load('text');
 
-            // Update font color
-            //range.font.color = 'red';
-
             range.insertText('{% if myVar %}','Before');
             range.insertText('{% endif %}','After');
+
+            await context.sync();
+            console.log(`The selected text was ${range.text}.`);
+        });
+}
+
+async function list_para() {
+    return Word.run(async context => {
+            /**
+             * Insert your Word code here
+             */
+            const range = context.document.getSelection();
+            
+            // Read the range text
+            range.load('text');
+            range.insertText('{{ item }}','Replace');
+            range.insertParagraph('{% for item in myVar %}','Before');
+            range.insertParagraph('{% endfor %}','After');
 
             await context.sync();
             console.log(`The selected text was ${range.text}.`);
