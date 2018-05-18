@@ -69,7 +69,7 @@ async function insert_template() {
         
         // Read the range text
         range.load('text');
-        range.insertText('{{p include_docx_template(myTemplate.docx) }}','Replace');
+        range.insertText('{{p include_docx_template("myTemplate.docx") }}','Replace');
 
         await context.sync();
         console.log(`The selected text was ${range.text}.`);
