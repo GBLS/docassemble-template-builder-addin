@@ -12,7 +12,7 @@
   <Id>d4384311-b4fb-4887-9c2a-5b982da56af9</Id>
 
   <!--Version. Updates from the store only get triggered if there is a version change. -->
-  <Version>1.0.0.5</Version>
+  <Version>1.0.0.6</Version>
   <ProviderName>Greater Boston Legal Services</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
   <!-- The display name of your add-in. Used on the store and various places of the Office UI such as the add-ins dialog. -->
@@ -108,6 +108,28 @@
                     <SourceLocation resid="DTB.Taskpane.Url" />
                   </Action>
                 </Control>
+
+                <Control xsi:type="Button" id="DTB.TaskpaneButton">
+                  <Label resid="DTB.TaskpaneButton.Label" />
+                  <Supertip>
+                    <!-- ToolTip title. resid must point to a ShortString resource. -->
+                    <Title resid="DTB.HelpButton.Label" />
+                    <!-- ToolTip description. resid must point to a LongString resource. -->
+                    <Description resid="DTB.TaskpaneButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="DTB.tpicon_16x16" />
+                    <bt:Image size="32" resid="DTB.tpicon_32x32" />
+                    <bt:Image size="80" resid="DTB.tpicon_80x80" />
+                  </Icon>
+
+                  <!-- This is what happens when the command is triggered (E.g. click on the Ribbon). Supported actions are ExecuteFunction or ShowTaskpane. -->
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>ButtonId1</TaskpaneId>
+                    <!-- Provide a url resource id for the location that will be displayed on the task pane. -->
+                    <SourceLocation resid="DTB.Help.Url" />
+                  </Action>
+                </Control>
               </Group>
             </OfficeTab>
           </ExtensionPoint>
@@ -124,14 +146,16 @@
       </bt:Images>
       <bt:Urls>
         <bt:Url id="DTB.Taskpane.Url" DefaultValue="https://calm-tor-43985.herokuapp.com/index.html" />
+        <bt:Url id="DTB.Help.Url" DefaultValue="https://docassemble.org/docs.html" />
         <bt:Url id="DTB.GetStarted.LearnMoreUrl" DefaultValue="https://www.nonprofittechy.com/projects/projects-docassemble-template-builder/" />
         <bt:Url id="DTB.DesktopFunctionFile.Url" DefaultValue="https://calm-tor-43985.herokuapp.com/function-file/function-file.html" />
       </bt:Urls>
       <!-- ShortStrings max characters==125. -->
       <bt:ShortStrings>
-        <bt:String id="DTB.TaskpaneButton.Label" DefaultValue="Show Docassemble Help" />
+        <bt:String id="DTB.TaskpaneButton.Label" DefaultValue="Show Docassemble Tasks" />
         <bt:String id="DTB.Group1Label" DefaultValue="Commands Group" />
         <bt:String id="DTB.GetStarted.Title" DefaultValue="Get started with Docassemble Template Builder!" />
+        <bt:String id="DTB.HelpButton.Label" DefaultValue="Show Docassemble Help" />
       </bt:ShortStrings>
       <!-- LongStrings max characters==250. -->
       <bt:LongStrings>

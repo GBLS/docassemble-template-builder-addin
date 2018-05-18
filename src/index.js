@@ -65,13 +65,14 @@ async function list_para() {
 
 async function insert_template() {
     return Word.run(async context => {
-            const range = context.document. getSelection();
-            
-            // Read the range text
-            range.load('text');
-            range.insertText('{{p include_docx_template("myTemplate.docx") }}','End');
- 
-            await context.sync();
-            console.log(`The selected text was ${range.text}.`);
-        });
+        const range = context.document.getSelection();
+        
+        // Read the range text
+        range.load('text');
+        range.insertText("{{p include_docx_template(\"myTemplate.docx\") }}",'Replace');
+
+        await context.sync();
+        console.log(`The selected text was ${range.text}.`);
+    });
+
 }
