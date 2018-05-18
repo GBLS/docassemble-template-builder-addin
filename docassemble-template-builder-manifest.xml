@@ -12,7 +12,7 @@
   <Id>d4384311-b4fb-4887-9c2a-5b982da56af9</Id>
 
   <!--Version. Updates from the store only get triggered if there is a version change. -->
-  <Version>1.0.0.6</Version>
+  <Version>1.0.0.7</Version>
   <ProviderName>Greater Boston Legal Services</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
   <!-- The display name of your add-in. Used on the store and various places of the Office UI such as the add-ins dialog. -->
@@ -109,8 +109,8 @@
                   </Action>
                 </Control>
 
-                <Control xsi:type="Button" id="DTB.TaskpaneButton">
-                  <Label resid="DTB.TaskpaneButton.Label" />
+                <Control xsi:type="Button" id="DTB.HelpButton">
+                  <Label resid="DTB.HelpButton.Label" />
                   <Supertip>
                     <!-- ToolTip title. resid must point to a ShortString resource. -->
                     <Title resid="DTB.HelpButton.Label" />
@@ -152,10 +152,10 @@
       </bt:Urls>
       <!-- ShortStrings max characters==125. -->
       <bt:ShortStrings>
-        <bt:String id="DTB.TaskpaneButton.Label" DefaultValue="Show Docassemble Tasks" />
-        <bt:String id="DTB.Group1Label" DefaultValue="Commands Group" />
+        <bt:String id="DTB.TaskpaneButton.Label" DefaultValue="Docassemble Tasks" />
+        <bt:String id="DTB.Group1Label" DefaultValue="Docassemble Template Builder" />
         <bt:String id="DTB.GetStarted.Title" DefaultValue="Get started with Docassemble Template Builder!" />
-        <bt:String id="DTB.HelpButton.Label" DefaultValue="Show Docassemble Help" />
+        <bt:String id="DTB.HelpButton.Label" DefaultValue="Help" />
       </bt:ShortStrings>
       <!-- LongStrings max characters==250. -->
       <bt:LongStrings>
