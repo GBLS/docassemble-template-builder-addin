@@ -6,10 +6,11 @@
 import * as OfficeHelpers from '@microsoft/office-js-helpers';
 
 $(document).ready(() => {
-    $('#if-para').click(if_para);
-    $('#if-inline').click(if_inline);
-    $('#list-para').click(list_para);
-    $('#insert-template').click(insert_template);
+    $('#ifPara').click(ifPara);
+    $('#ifInline').click(ifInline);
+    $('#listPara').click(listPara);
+    $('#insertTemplate').click(insertTemplate);
+    $('#commentPara').click(commentPara);
 });
   
 // The initialize function must be run each time a new page is loaded
@@ -18,7 +19,7 @@ Office.initialize = (reason) => {
     $('#app-body').show();
 };
 
-async function if_para() {
+async function ifPara() {
     return Word.run(async context => {
              const range = context.document.getSelection();
             
@@ -33,7 +34,7 @@ async function if_para() {
         });
 }
 
-async function if_inline() {
+async function ifInline() {
     return Word.run(async context => {
             const range = context.document.getSelection();
             
@@ -48,7 +49,7 @@ async function if_inline() {
         });
 }
 
-async function list_para() {
+async function listPara() {
     return Word.run(async context => {
             const range = context.document.getSelection();
             
@@ -63,16 +64,30 @@ async function list_para() {
         });
 }
 
-async function insert_template() {
+async function commentPara() {
+    return Word.run(async context => {
+            const range = context.document.getSelection();
+            
+            // Read the range text
+            range.load('text');
+            range.insertParagraph('{#','Before');
+            range.insertParagraph('#}','After');
+
+            await context.sync();
+            console.log(`The selected text was ${range.text}.`);
+        });
+}
+
+
+async function insertTemplate() {
     return Word.run(async context => {
         const range = context.document.getSelection();
         
         // Read the range text
         range.load('text');
-        range.insertText('{{p include_docx_template("myTemplate.docx") }}','Replace');
+        range.insertText('include_docx_template("myTemplate.docx")','Replace');
 
         await context.sync();
         console.log(`The selected text was ${range.text}.`);
     });
-
 }
