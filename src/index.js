@@ -27,6 +27,8 @@ async function insertVariable() {
         const range = context.document.getSelection();
 
         var variableName = document.getElementById('inputVariableName').value;
+        //checkboxVariableReplaceAll
+        var variableReplaceAll = document.getElementById('checkboxVariableReplaceAll').checked;
 
         range.load('text');
         range.insertText('{{ ' + variableName + ' }}','Replace');
@@ -73,8 +75,12 @@ async function listPara() {
     return Word.run(async context => {
             const range = context.document.getSelection();
             var listVariableName = document.getElementById('inputListVariableName').value;
-            var textBefore = '{%p for item in ' + listVariableName + '%}'; 
-
+            var onlyTrue = document.getElementById('checkboxOnlyTrue').checked;
+            if (onlyTrue) {
+                var textBefore = '{%p for item in ' + listVariableName + '.true_values() %}'; 
+            } else {
+                var textBefore = '{%p for item in ' + listVariableName + '%}'; 
+            }
             // Read the range text
             range.load('text');
             range.insertText('{{ item }}','Replace');
