@@ -41,31 +41,29 @@
 <!--        <p class="ms-font-l">Click the buttons below to access Docassemble template functionality.</p>
 -->
         <label for="inputVariableName">Variable Name</label>
-        <input id="inputVariableName" type="text" class="ms-TextField-field" >
-
+        <input id="inputVariableName" type="text" class="ms-TextField-field" />
+        <button class="ms-Toggle-background pill-74 x-hidden-focus" id="ToggleVariableReplaceAll" type="button" aria-pressed="false" aria-label="Replace All" data-is-focusable="true"><div class="ms-Toggle-thumb thumb-75"></div></button>
+        <label for="ToggleVariableReplaceAll" class="ms-Label ms-Toggle-stateText text-73">Off</label>
         <div role="button" id="insertVariable" class="ms-Button ms-Button--primary">
             <span class="ms-Button-label" class="ms-Label">Insert Variable</span>
-            <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--ChevronRight"></i></span>
-        </div>        
+        </div>
+
+        <label for="inputIfExpression">Expression or Variable Name</label>
+        <input id="inputIfExpression" type="text" class="ms-TextField-field" />
         <div role="button" id="ifPara" class="ms-Button ms-Button--primary">
             <span class="ms-Button-label">IF (paragraph)</span>
-            <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--ChevronRight"></i></span>
         </div>
         <div role="button" id="ifInline" class="ms-Button ms-Button--primary">
             <span class="ms-Button-label">IF (inline)</span>
-            <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--ChevronRight"></i></span>
         </div>
         <div role="button" id="listPara" class="ms-Button ms-Button--primary">
             <span class="ms-Button-label">LIST (each item on own line)</span>
-            <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--CustomList"></i></span>
         </div>
         <div role="button" id="insertTemplate" class="ms-Button ms-Button--primary">
             <span class="ms-Button-label">INSERT Word Template </span>
-            <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--FileTemplate"></i></span>
         </div>
         <div role="button" id="commentPara" class="ms-Button ms-Button--primary">
             <span class="ms-Button-label">Toggle Comments for Selection</span>
-            <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--FileComment"></i></span>
         </div>
     </main>
 

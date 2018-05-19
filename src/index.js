@@ -91,12 +91,16 @@ async function commentPara() {
         var matches = re.exec(range.text);
 
         if (matches) { // index 1 is the uncommented string
-            range.insertText(matches[2],'Replace');
+            // This is not correct as it removes formatting from the text
+            // This sample looks like it shows how to do it correctly: https://github.com/OfficeDev/Word-Add-in-JS-SpecKit/blob/master/scripts/boilerplate.js in addBoilerplateParagraph
+            // we should use var paragraphs = context.document.getSelection().paragraphs; and then loop through paragraph collection
+            range.insertText(matches[2],'Replace'); 
             console.log('Removed comments.')
         } else {
             range.insertParagraph('{#','Before');
             range.insertParagraph('#}','After');
             console.log('Added comments.')
+            // we should extend the selection to include the newly added text
         }
         await context.sync();
     });
