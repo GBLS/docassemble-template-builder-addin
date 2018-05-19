@@ -39,6 +39,7 @@ async function insertVariable() {
             var textToReplace = range.text;
 
             var results = context.document.body.search(textToReplace);
+            context.load(results);
             
             await context.sync();
 
