@@ -5,6 +5,12 @@
 
 import * as OfficeHelpers from '@microsoft/office-js-helpers';
 
+// Initialize dropdowns
+  var DropdownHTMLElements = document.querySelectorAll('.ms-Dropdown');
+  for (var i = 0; i < DropdownHTMLElements.length; ++i) {
+    var Dropdown = new fabric['Dropdown'](DropdownHTMLElements[i]);
+  }
+
 $(document).ready(() => {
     $('#ifPara').click(ifPara);
     $('#ifInline').click(ifInline);
@@ -46,6 +52,7 @@ async function insertVariable() {
             await context.sync();
             var textToReplace = range.text;
 
+            // FIXME: We need to ignore Jinja statements and expressions -- search looks inside them now
             var results = context.document.body.search(textToReplace.trim() ); // Word Online seems to select spaces next to a word you double-click on
             context.load(results);
             
