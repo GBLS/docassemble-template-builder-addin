@@ -70,6 +70,7 @@ async function commentPara() {
             
         // Read the range text
         range.load('text');
+        await context.sync(); // Guess this has a performance penalty?
         
         // Regexp with 3 groups: {# , text between comments, #}. We match both whitespace and non-whitespace, including newlines
         var re = new RegExp('({#)([\s\S]*)(#})');
