@@ -40,33 +40,53 @@
 -->
 <!--        <p class="ms-font-l">Click the buttons below to access Docassemble template functionality.</p>
 -->
-        <label for="inputVariableName">Variable Name</label>
-        <input id="inputVariableName" type="text" class="ms-TextField-field" />
 
 <!--        <button class="ms-Toggle-background pill-74 x-hidden-focus" id="ToggleVariableReplaceAll" type="button" aria-pressed="false" aria-label="Replace All" data-is-focusable="true"><div class="ms-Toggle-thumb thumb-75"></div></button> -->
-        <input type="checkbox" id="ToggleVariableReplaceAll" class="ms-checkbox" />
-        <label for="ToggleVariableReplaceAll" class="ms-Label ms-Toggle-stateText text-73">Off</label>
-        <div role="button" id="insertVariable" class="ms-Button ms-Button--primary">
-            <span class="ms-Button-label" class="ms-Label">Insert Variable</span>
+        <div id="variable">
+            <label for="inputVariableName">Variable Name</label>
+            <input id="inputVariableName" type="text" class="ms-TextField-field" />
+            <input type="checkbox" id="ToggleVariableReplaceAll" class="ms-checkbox" />
+            <label for="ToggleVariableReplaceAll" class="ms-Label">Find and Replace All</label>
+            <div role="button" id="insertVariable" class="ms-Button ms-Button--primary">
+                <span class="ms-Button-label" class="ms-Label">Insert Variable</span>
+            </div>
+        </div>  
+
+        <div id="if">
+            <label for="inputIfExpression">Expression or Variable Name</label>
+            <input id="inputIfExpression" type="text" class="ms-TextField-field" />
+            <div role="button" id="ifPara" class="ms-Button ms-Button--primary">
+                <span class="ms-Button-label">IF (paragraph or list item)</span>
+            </div>
+            <div role="button" id="ifInline" class="ms-Button ms-Button--primary">
+                <span class="ms-Button-label">IF (inline)</span>
+            </div>
         </div>
 
-        <label for="inputIfExpression">Expression or Variable Name</label>
-        <input id="inputIfExpression" type="text" class="ms-TextField-field" />
-        <div role="button" id="ifPara" class="ms-Button ms-Button--primary">
-            <span class="ms-Button-label">IF (paragraph)</span>
+        <div id="list">
+            <label for="inputListVariableName">List Variable Name</label>
+            <input id="inputListVariableName" type="text" class="ms-TextField-field" />
+            <div role="button" id="listPara" class="ms-Button ms-Button--primary">
+                <span class="ms-Button-label">LIST (each item on own line)</span>
+            </div>
         </div>
-        <div role="button" id="ifInline" class="ms-Button ms-Button--primary">
-            <span class="ms-Button-label">IF (inline)</span>
+
+        <div id="insert">
+            <label for="inputTemplateName">List Variable Name
+                <i class="ms-Icon ms-Icon--FabricOpenFolderHorizontal" aria-hidden="true"></i>
+                <input id="inputTemplateName" type="text" class="ms-TextField-field" />
+            </label>   
+            <div role="button" id="insertTemplate" class="ms-Button ms-Button--primary">
+                <span class="ms-Button-label">INSERT Word Template </span>
+            </div>
         </div>
-        <div role="button" id="listPara" class="ms-Button ms-Button--primary">
-            <span class="ms-Button-label">LIST (each item on own line)</span>
+
+        <div id="comment">
+            <div role="button" id="commentPara" class="ms-Button ms-Button--primary">
+                <span class="ms-Button-label">Toggle Comments for Selection</span>
+            </div>
         </div>
-        <div role="button" id="insertTemplate" class="ms-Button ms-Button--primary">
-            <span class="ms-Button-label">INSERT Word Template </span>
-        </div>
-        <div role="button" id="commentPara" class="ms-Button ms-Button--primary">
-            <span class="ms-Button-label">Toggle Comments for Selection</span>
-        </div>
+
     </main>
 
     <script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
