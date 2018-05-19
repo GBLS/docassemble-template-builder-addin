@@ -40,12 +40,11 @@ async function insertVariable() {
 
             var results = context.document.body.search(textToReplace);
             
-            // more syncing than we need? not sure
-            context.sync().then(function() {
-                for (var i = 0; i < results.items.length; i++) {
-                    results.items[i].insertText('{{ ' + variableName + ' }}', "Replace");     //Replace the text HERE
-                  }
-            });
+            await context.sync();
+
+            for (var i = 0; i < results.items.length; i++) {
+                results.items[i].insertText('{{ ' + variableName + ' }}', "Replace");
+            }
         }
 
         await context.sync();
