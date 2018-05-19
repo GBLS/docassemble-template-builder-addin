@@ -73,11 +73,11 @@ async function commentPara() {
         await context.sync(); // Guess this has a performance penalty?
         
         // Regexp with 3 groups: {# , text between comments, #}. We match both whitespace and non-whitespace, including newlines
-        var re = new RegExp('({#)([\s\S]*)(#})');
+        var re = new RegExp('({#)([\\s\\S]*)(#})');
         var matches = re.exec(range.text);
 
         if (matches) { // index 1 is the uncommented string
-            range.insertText(matches[1],'Replace');
+            range.insertText(matches[2],'Replace');
         } else {
             range.insertParagraph('{#','Before');
             range.insertParagraph('#}','After');
