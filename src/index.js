@@ -29,6 +29,14 @@ async function insertVariable() {
         var variableName = document.getElementById('inputVariableName').value;
         //checkboxVariableReplaceAll
         var variableReplaceAll = document.getElementById('checkboxVariableReplaceAll').checked;
+        var variableFormat = document.getElementById('selectVariableFormat').value;
+
+
+        if (variableFormat == "") {
+            var textToInsert = variableName;
+        } else {
+            var textToInsert = variableFormat + '(' + variableName + ')';
+        }
 
         range.load('text');
 
@@ -38,13 +46,13 @@ async function insertVariable() {
             await context.sync();
             var textToReplace = range.text;
 
-            var results = context.document.body.search(textToReplace);
+            var results = context.document.body.search(textToReplace.trim() ); // Word Online seems to select spaces next to a word you double-click on
             context.load(results);
             
             await context.sync();
 
             for (var i = 0; i < results.items.length; i++) {
-                results.items[i].insertText('{{ ' + variableName + ' }}', "Replace");
+                results.items[i].insertText('{{ ' + textToInsert + ' }}', "Replace");
             }
         }
 

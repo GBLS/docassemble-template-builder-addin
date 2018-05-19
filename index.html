@@ -47,6 +47,25 @@
             <input id="inputVariableName" type="text" class="ms-TextField-field" />
             <input type="checkbox" id="checkboxVariableReplaceAll" class="ms-checkbox" />
             <label for="checkboxVariableReplaceAll" class="ms-Label">Find and Replace All</label>
+            <!-- below should be single-argument functions only -->
+            <div class="ms-Dropdown">
+                    <i class="ms-Dropdown-caretDown ms-Icon ms-Icon--caretDown"></i>
+                    <select id="selectVariableFormat" class="ms-Dropdown-select">
+                        <option value="">(none)</option>
+                        <option value="currency">Currency (localized)</option>
+                        <option value="capitalize">Capitalize</option>
+                        <option value="indefinite_article">Indefinite Article</option>
+                        <option value="nice_number">Nice Number</option>
+                        <option value="noun_plural">Pluralize noun</option>
+                        <option value="noun_singular">Singularize noun</option>
+                        <option value="ordinal_number">Ordinal Number</option>
+                        <option value="title_case">Title Case</option>
+                        <option value="verb_past">Past tense verb</option>
+                        <option value="verb_present">Present tense verb</option>
+                        <option value="fix_punctuation">Fix punctuation</option>
+                    </select>
+                </div>
+
             <div role="button" id="insertVariable" class="ms-Button ms-Button--primary">
                 <span class="ms-Button-label" class="ms-Label">Insert Variable</span>
             </div>
