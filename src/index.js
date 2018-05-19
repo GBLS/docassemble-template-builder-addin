@@ -66,18 +66,25 @@ async function listPara() {
 
 async function commentPara() {
     return Word.run(async context => {
-            const range = context.document.getSelection();
+        const range = context.document.getSelection();
             
-            // Read the range text
-            range.load('text');
+        // Read the range text
+        range.load('text');
+        
+        // Regexp with 3 groups: {# , text between comments, #}. We match both whitespace and non-whitespace, including newlines
+        var re = new RegExp('({#)([\s\S]*)(#})');
+        var matches = re.exec(range.text);
+
+        if (matches) { // index 1 is the uncommented string
+            range.insertText(matches[1],'Replace');
+        } else {
             range.insertParagraph('{#','Before');
             range.insertParagraph('#}','After');
-
-            await context.sync();
-            console.log(`The selected text was ${range.text}.`);
-        });
+        }
+        await context.sync();
+        console.log(`The selected text was ${range.text}.`);
+    });
 }
-
 
 async function insertTemplate() {
     return Word.run(async context => {
@@ -85,9 +92,11 @@ async function insertTemplate() {
         
         // Read the range text
         range.load('text');
+        
         range.insertText('{{p include_docx_template("myTemplate.docx") }}','Replace');
-
+        
         await context.sync();
         console.log(`The selected text was ${range.text}.`);
     });
 }
+
