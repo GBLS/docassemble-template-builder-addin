@@ -38,27 +38,33 @@
 <!--
             <h2 class="ms-font-xl ms-fontWeight-semilight ms-fontColor-neutralPrimary ms-u-slideUpIn20"> Discover what Docassemble Template Builder can do for you today! </h2>
 -->
-        <br />
-        <br />
-        <p class="ms-font-l">Click <b>IF</b> to insert boilerplate conditional text around the selection.</p>
-        <div role="button" id="ifPara" class="ms-welcome__action ms-Button ms-Button--hero ms-u-slideUpIn20">
+<!--        <p class="ms-font-l">Click the buttons below to access Docassemble template functionality.</p>
+-->
+        <label for="inputVariableName">Variable Name</label>
+        <input id="inputVariableName" type="text" class="ms-TextField-field" >
+
+        <div role="button" id="insertVariable" class="ms-Button ms-Button--primary">
+            <span class="ms-Button-label" class="ms-Label">Insert Variable</span>
+            <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--ChevronRight"></i></span>
+        </div>        
+        <div role="button" id="ifPara" class="ms-Button ms-Button--primary">
             <span class="ms-Button-label">IF (paragraph)</span>
             <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--ChevronRight"></i></span>
         </div>
-        <div role="button" id="ifInline" class="ms-welcome__action ms-Button ms-Button--hero ms-u-slideUpIn20">
+        <div role="button" id="ifInline" class="ms-Button ms-Button--primary">
             <span class="ms-Button-label">IF (inline)</span>
             <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--ChevronRight"></i></span>
         </div>
-        <div role="button" id="listPara" class="ms-welcome__action ms-Button ms-Button--hero ms-u-slideUpIn20">
+        <div role="button" id="listPara" class="ms-Button ms-Button--primary">
             <span class="ms-Button-label">LIST (each item on own line)</span>
             <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--CustomList"></i></span>
         </div>
-        <div role="button" id="insertTemplate" class="ms-welcome__action ms-Button ms-Button--hero ms-u-slideUpIn20">
+        <div role="button" id="insertTemplate" class="ms-Button ms-Button--primary">
             <span class="ms-Button-label">INSERT Word Template </span>
             <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--FileTemplate"></i></span>
         </div>
-        <div role="button" id="commentPara" class="ms-welcome__action ms-Button ms-Button--hero ms-u-slideUpIn20">
-            <span class="ms-Button-label">Comment Section</span>
+        <div role="button" id="commentPara" class="ms-Button ms-Button--primary">
+            <span class="ms-Button-label">Toggle Comments for Selection</span>
             <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--FileComment"></i></span>
         </div>
     </main>

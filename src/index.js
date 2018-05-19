@@ -11,6 +11,7 @@ $(document).ready(() => {
     $('#listPara').click(listPara);
     $('#insertTemplate').click(insertTemplate);
     $('#commentPara').click(commentPara);
+    $('#insertVariable').click(insertVariable);
 });
   
 // The initialize function must be run each time a new page is loaded
@@ -18,6 +19,19 @@ Office.initialize = (reason) => {
     $('#sideload-msg').hide();
     $('#app-body').show();
 };
+
+async function insertVariable() {
+    return Word.run(async context => {
+        const range = context.document.getSelection();
+
+        var variableName = document.getElementById('inputVariableName').value;
+
+        range.load('text');
+        range.insertText('{{ ' + variableName + ' }}','Replace');
+
+        await context.sync();
+    });
+}
 
 async function ifPara() {
     return Word.run(async context => {
@@ -78,12 +92,13 @@ async function commentPara() {
 
         if (matches) { // index 1 is the uncommented string
             range.insertText(matches[2],'Replace');
+            console.log('Removed comments.')
         } else {
             range.insertParagraph('{#','Before');
             range.insertParagraph('#}','After');
+            console.log('Added comments.')
         }
         await context.sync();
-        console.log(`The selected text was ${range.text}.`);
     });
 }
 
