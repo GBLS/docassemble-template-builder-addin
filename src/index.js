@@ -31,7 +31,22 @@ async function insertVariable() {
         var variableReplaceAll = document.getElementById('checkboxVariableReplaceAll').checked;
 
         range.load('text');
-        range.insertText('{{ ' + variableName + ' }}','Replace');
+
+        if (! variableReplaceAll) {
+            range.insertText('{{ ' + variableName + ' }}','Replace');
+        } else {
+            await context.sync();
+            var textToReplace = range.text;
+
+            var results = context.document.body.search(textToReplace);
+            
+            // more syncing than we need? not sure
+            context.sync().then(function() {
+                for (var i = 0; i < results.items.length; i++) {
+                    results.items[i].insertText('{{ ' + variableName + ' }}', "Replace");     //Replace the text HERE
+                  }
+            });
+        }
 
         await context.sync();
     });
@@ -144,6 +159,8 @@ async function insertTemplate() {
 
 /////////////////////////////////////////////////////////////////////
 // Helper functions
+
+// File handling
 function getDocumentAsCompressed() {
     Office.context.document.getFileAsync(Office.FileType.Compressed, {  }, 
         function (result) {
