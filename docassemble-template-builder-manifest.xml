@@ -20,8 +20,8 @@
   <Description DefaultValue="An add-in that helps with building templates for Docassemble.org guided interviews."/>
 
   <!-- Icon for your add-in. Used on installation screens and the add-ins dialog. -->
-  <IconUrl DefaultValue="https://calm-tor-43985.herokuapp.com/assets/icon-32.png" />
-  <HighResolutionIconUrl DefaultValue="https://calm-tor-43985.herokuapp.com/assets/icon-80.png"/>
+  <IconUrl DefaultValue="https://calm-tor-43985.herokuapp.com/assets/logo-32.png" />
+  <HighResolutionIconUrl DefaultValue="https://calm-tor-43985.herokuapp.com/assets/logo-80.png"/>
 
   <!--If you plan to submit this add-in to the Office Store, uncomment the SupportUrl element below-->
   <SupportUrl DefaultValue="https://www.nonprofittechy.com/projects/projects-docassemble-template-builder/"/>
@@ -118,9 +118,9 @@
     <!-- You can use resources across hosts and form factors. -->
     <Resources>
       <bt:Images>
-        <bt:Image id="DTB.tpicon_16x16" DefaultValue="https://calm-tor-43985.herokuapp.com/assets/icon-16.png" />
-        <bt:Image id="DTB.tpicon_32x32" DefaultValue="https://calm-tor-43985.herokuapp.com/assets/icon-32.png" />
-        <bt:Image id="DTB.tpicon_80x80" DefaultValue="https://calm-tor-43985.herokuapp.com/assets/icon-80.png" />
+        <bt:Image id="DTB.tpicon_16x16" DefaultValue="https://calm-tor-43985.herokuapp.com/assets/logo-16.png" />
+        <bt:Image id="DTB.tpicon_32x32" DefaultValue="https://calm-tor-43985.herokuapp.com/assets/logo-32.png" />
+        <bt:Image id="DTB.tpicon_80x80" DefaultValue="https://calm-tor-43985.herokuapp.com/assets/logo-80.png" />
       </bt:Images>
       <bt:Urls>
         <bt:Url id="DTB.Taskpane.Url" DefaultValue="https://calm-tor-43985.herokuapp.com/index.html" />

@@ -27,17 +27,19 @@
 </head>
 
 <body class="ms-font-m ms-welcome">
-    <header class="ms-welcome__header ms-bgColor-neutralLighter ms-u-fadeIn500">
+    <!--   <header class="ms-welcome__header ms-bgColor-neutralLighter ms-u-fadeIn500">
         <img width="90" height="90" src="assets/logo-filled.png" alt="Docassemble Template Builder" title="Docassemble Template Builder"
         />
         <h1 class="ms-fontSize-su ms-fontWeight-light ms-fontColor-neutralPrimary">Welcome</h1>
     </header>
     <section id="sideload-msg" class="ms-welcome__main">
-        <h2 class="ms-font-xl ms-fontWeight-semilight ms-fontColor-neutralPrimary ms-u-slideUpIn20">Please sideload this addin to see app body.</h2>
+        <h2 class="ms-font-xxl ms-fontWeight-semilight ms-fontColor-neutralPrimary ms-u-slideUpIn20">Please sideload this addin to see app body.</h2>
     </section>
+-->
     <main id="app-body" class="ms-welcome__main" style="display: none;">
 
         <div id="variable">
+            <h2 class="ms-font-xxl">Insert Variables</h2>
             <div class="ms-TextField">
                 <label class="ms-Label" for="inputVariableName">Variable Name</label>
                 <input id="inputVariableName" class="ms-TextField-field" type="text" value="" placeholder="my_variable">
@@ -52,7 +54,7 @@
             <!-- below should be single-argument functions only -->
             <div class="ms-Dropdown">
                 <label class="ms-Label">Apply Format</label>
-                <i class="ms-Dropdown-caretDown ms-Icon ms-Icon--caretDown"></i>
+                <i class="ms-Dropdown-caretDown ms-Icon ms-logo--caretDown"></i>
                 <select id="selectVariableFormat" class="ms-Dropdown-select">
                     <option value="">(none)</option>
                     <option value="currency">Currency (localized)</option>
@@ -70,12 +72,14 @@
             </div>
 
             <div class="ms-CommandButton">
-                <button class="ms-CommandButton-button" id="insertVariable" >
-                    <span class="ms-CommandButton-icon ms-fontColor-themePrimary"><i class="ms-Icon ms-Icon--CirclePlus"></i></span>
+                <button class="ms-CommandButton-button" id="insertVariable">
+                    <span class="ms-CommandButton-icon ms-fontColor-themePrimary">
+                        <i class="ms-Icon ms-logo--CirclePlus"></i>
+                    </span>
                     <span class="ms-CommandButton-label">Insert Variable</span>
                 </button>
             </div>
-<!--
+            <!--
             <div role="ms-CommandButton" id="insertVariable" class="ms-Button ms-Button--primary">
                 <span class="ms-Button-label" class="ms-Label">Insert Variable</span>
             </div>
@@ -83,10 +87,13 @@
         </div>
 
         <div id="if">
+            <h2 class="ms-font-xxl">Branch Logic</h2>
+
             <div class="ms-TextField">
                 <label class="ms-Label" for="inputIfExpression">Expression or Variable Name</label>
                 <input id="inputIfExpression" type="text" class="ms-TextField-field">
             </div>
+            <!--
             <div class="ms-ChoiceFieldGroup" id="choicefieldgroup" role="radiogroup">
                 <div class="ms-ChoiceFieldGroup-title">
                     <label class="ms-Label is-required">Inline or Paragraph</label>
@@ -106,15 +113,28 @@
                     </li>
                 </ul>
             </div>
-            <div role="button" id="ifPara" class="ms-Button ms-Button--primary">
-                <span class="ms-Button-label">Insert IF</span>
+-->
+            <div class="ms-CommandButton">
+                <button class="ms-CommandButton-button" id="ifPara">
+                    <span class="ms-CommandButton-icon ms-fontColor-themePrimary">
+                        <i class="ms-Icon ms-logo--BranchFork2"></i>
+                    </span>
+                    <span class="ms-CommandButton-label">If (Paragraph)</span>
+                </button>
             </div>
-            <div role="button" id="ifInline" class="ms-Button ms-Button--primary">
-                <span class="ms-Button-label">IF</span>
+            <div class="ms-CommandButton">
+                <button class="ms-CommandButton-button" id="ifInline">
+                    <span class="ms-CommandButton-icon ms-fontColor-themePrimary">
+                        <i class="ms-Icon ms-logo--BranchFork2"></i>
+                    </span>
+                    <span class="ms-CommandButton-label">If (Paragraph)</span>
+                </button>
             </div>
         </div>
 
         <div id="list">
+            <h2 class="ms-font-xxl">Insert List or Dictionary Variable</h2>
+
             <div class="ms-TextField">
                 <label class="ms-Label" for="inputListVariableName">List Variable Name</label>
                 <input id="inputListVariableName" type="text" class="ms-TextField-field" />
@@ -123,29 +143,46 @@
                 <label for="checkboxOnlyTrue" class="ms-Label">Display only True (checked) items</label>
                 <input type="checkbox" id="checkboxOnlyTrue" class="ms-checkbox" />
             </div>
-            <div role="button" id="listPara" class="ms-Button ms-Button--primary">
-                <span class="ms-Button-label">LIST (each item on own line)</span>
+            <div class="ms-CommandButton">
+                <button class="ms-CommandButton-button" id="listPara">
+                    <span class="ms-CommandButton-icon ms-fontColor-themePrimary">
+                        <i class="ms-Icon ms-logo--CustomList"></i>
+                    </span>
+                    <span class="ms-CommandButton-label">Add List</span>
+                </button>
             </div>
         </div>
 
         <div id="insert">
+            <h2 class="ms-font-xxl">Insert a child template</h2>
             <div class="ms-TextField">
                 <label for="inputTemplateName" class="ms-Label">Child template name</label>
-                <i class="ms-Icon ms-Icon--FabricOpenFolderHorizontal" aria-hidden="true"></i>
+                <i class="ms-Icon ms-logo--FabricOpenFolderHorizontal" aria-hidden="true"></i>
                 <input id="inputTemplateName" type="text" class="ms-TextField-field" />
             </div>
             <div class="ms-TextField">
                 <label class="ms-Label" for="inputTemplateOptions">Set child template variables</label>
                 <input id="inputTemplateOptions" type="text" class="ms-TextField-field" />
             </div>
-            <div role="button" id="insertTemplate" class="ms-Button ms-Button--primary">
-                <span class="ms-Button-label">INSERT Word Template </span>
+            <div class="ms-CommandButton">
+                <button class="ms-CommandButton-button" id="insertTemplate">
+                    <span class="ms-CommandButton-icon ms-fontColor-themePrimary">
+                        <i class="ms-Icon ms-logo--WordDocument"></i>
+                    </span>
+                    <span class="ms-CommandButton-label">Insert template</span>
+                </button>
             </div>
         </div>
 
         <div id="comment">
-            <div role="button" id="commentPara" class="ms-Button ms-Button--primary">
-                <span class="ms-Button-label">Toggle Comments for Selection</span>
+            <h2 class="ms-font-xxl">Comment (temporarily disable)</h2>
+            <div class="ms-CommandButton">
+                <button class="ms-CommandButton-button" id="commentPara">
+                    <span class="ms-CommandButton-icon ms-fontColor-themePrimary">
+                        <i class="ms-Icon ms-logo--FileComment"></i>
+                    </span>
+                    <span class="ms-CommandButton-label">Toggle Comments for Selection</span>
+                </button>
             </div>
         </div>
 
