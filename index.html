@@ -35,26 +35,19 @@
         <h2 class="ms-font-xl ms-fontWeight-semilight ms-fontColor-neutralPrimary ms-u-slideUpIn20">Please sideload this addin to see app body.</h2>
     </section>
     <main id="app-body" class="ms-welcome__main" style="display: none;">
-<!--
-            <h2 class="ms-font-xl ms-fontWeight-semilight ms-fontColor-neutralPrimary ms-u-slideUpIn20"> Discover what Docassemble Template Builder can do for you today! </h2>
--->
-<!--        <p class="ms-font-l">Click the buttons below to access Docassemble template functionality.</p>
--->
 
-<!--        <button class="ms-Toggle-background pill-74 x-hidden-focus" id="ToggleVariableReplaceAll" type="button" aria-pressed="false" aria-label="Replace All" data-is-focusable="true"><div class="ms-Toggle-thumb thumb-75"></div></button> -->
         <div id="variable">
-            <label for="inputVariableName">Variable Name</label>
-            <input id="inputVariableName" type="text" class="ms-TextField-field" />
+            <div class="ms-TextField">
+                <label class="ms-Label" for="inputVariableName">Variable Name</label>
+                <input id="inputVariableName" class="ms-TextField-field" type="text" value="" placeholder="my_variable">
+            </div>
             <div class="ms-CheckBox">
-                <input tabindex="-1" type="checkbox" class="ms-CheckBox-input">
-                <label role="checkbox" class="ms-CheckBox-field" tabindex="0" aria-checked="false" name="checkboxVariableReplaceAll" id="checkboxVariableReplaceAll">
+                <input tabindex="-1" type="checkbox" class="ms-CheckBox-input" id="checkboxVariableReplaceAll">
+                <label role="checkbox" class="ms-CheckBox-field" tabindex="0" aria-checked="false" name="checkboxVariableReplaceAll" >
                   <span class="ms-Label">Find and Replace All</span> 
                 </label>
-              </div>
-<!--
-            <input type="checkbox" id="checkboxVariableReplaceAll" class="ms-checkbox" />
-            <label for="checkboxVariableReplaceAll" class="ms-Label">Find and Replace All</label>
--->
+            </div>
+
             <!-- below should be single-argument functions only -->
             <div class="ms-Dropdown">
                     <label class="ms-Label">Apply Format</label>
@@ -81,8 +74,10 @@
         </div>  
 
         <div id="if">
-            <label for="inputIfExpression">Expression or Variable Name</label>
-            <input id="inputIfExpression" type="text" class="ms-TextField-field" />
+            <div class="ms-TextField">
+                <label class="ms-Label" for="inputIfExpression">Expression or Variable Name</label>
+                <input id="inputIfExpression" type="text" class="ms-TextField-field" />
+            </div>
             <div role="button" id="ifPara" class="ms-Button ms-Button--primary">
                 <span class="ms-Button-label">IF (paragraph or list item)</span>
             </div>
@@ -92,23 +87,29 @@
         </div>
 
         <div id="list">
-            <label for="inputListVariableName">List Variable Name</label>
-            <input id="inputListVariableName" type="text" class="ms-TextField-field" />
-            <input type="checkbox" id="checkboxOnlyTrue" class="ms-checkbox" />
-            <label for="checkboxOnlyTrue" class="ms-Label">Display only True (checked) items</label>
+            <div class="ms-TextField">
+                <label class="ms-Label" for="inputListVariableName">List Variable Name</label>
+                <input id="inputListVariableName" type="text" class="ms-TextField-field" />
+            </div>
+            <div class="ms-CheckBox">
+                <label for="checkboxOnlyTrue" class="ms-Label">Display only True (checked) items</label>
+                <input type="checkbox" id="checkboxOnlyTrue" class="ms-checkbox" />
+            </div>
             <div role="button" id="listPara" class="ms-Button ms-Button--primary">
                 <span class="ms-Button-label">LIST (each item on own line)</span>
             </div>
         </div>
 
         <div id="insert">
-            <label for="inputTemplateName">Child template name
+            <div class="ms-TextField">
+                <label for="inputTemplateName" class="ms-Label">Child template name</label>
                 <i class="ms-Icon ms-Icon--FabricOpenFolderHorizontal" aria-hidden="true"></i>
                 <input id="inputTemplateName" type="text" class="ms-TextField-field" />
-            </label>
-            <label for="inputTemplateOptions">Optional argument to set variables in child template (like: caption_title ="MOTION FOR CONTEMPT", caption_subtitle = "DEFENDANT'S MOTION FOR CONTEMPT")</label>
-            <input id="inputTemplateOptions" type="text" class="ms-TextField-field" />
-
+            </div>
+            <div class="ms-TextField">
+                <label  class="ms-Label" for="inputTemplateOptions">Set child template variables</label>
+                <input id="inputTemplateOptions" type="text" class="ms-TextField-field" />
+            </div>
             <div role="button" id="insertTemplate" class="ms-Button ms-Button--primary">
                 <span class="ms-Button-label">INSERT Word Template </span>
             </div>
