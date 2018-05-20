@@ -8,7 +8,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Docassemble Template Builder</title>
+    <title>Template Builder</title>
 
     <!-- Office JavaScript API -->
     <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.debug.js"></script>
@@ -42,7 +42,7 @@
             <h2 class="ms-font-xxl">Insert Variables</h2>
             <div class="ms-TextField">
                 <label class="ms-Label" for="inputVariableName">Variable Name</label>
-                <input id="inputVariableName" class="ms-TextField-field" type="text" value="" placeholder="my_variable">
+                <input id="inputVariableName" class="ms-TextField-field" type="text" value="" placeholder="">
             </div>
             <div class="ms-CheckBox">
                 <input tabindex="-1" type="checkbox" class="ms-CheckBox-input" id="checkboxVariableReplaceAll">
@@ -54,7 +54,7 @@
             <!-- below should be single-argument functions only -->
             <div class="ms-Dropdown">
                 <label class="ms-Label">Apply Format</label>
-                <i class="ms-Dropdown-caretDown ms-Icon ms-logo--caretDown"></i>
+                <i class="ms-Dropdown-caretDown ms-Icon ms-icon--caretDown"></i>
                 <select id="selectVariableFormat" class="ms-Dropdown-select">
                     <option value="">(none)</option>
                     <option value="currency">Currency (localized)</option>
@@ -74,7 +74,7 @@
             <div class="ms-CommandButton">
                 <button class="ms-CommandButton-button" id="insertVariable">
                     <span class="ms-CommandButton-icon ms-fontColor-themePrimary">
-                        <i class="ms-Icon ms-logo--CirclePlus"></i>
+                        <i class="ms-Icon ms-icon--CirclePlus"></i>
                     </span>
                     <span class="ms-CommandButton-label">Insert Variable</span>
                 </button>
@@ -117,7 +117,7 @@
             <div class="ms-CommandButton">
                 <button class="ms-CommandButton-button" id="ifPara">
                     <span class="ms-CommandButton-icon ms-fontColor-themePrimary">
-                        <i class="ms-Icon ms-logo--BranchFork2"></i>
+                        <i class="ms-Icon ms-icon--BranchFork2"></i>
                     </span>
                     <span class="ms-CommandButton-label">If (Paragraph)</span>
                 </button>
@@ -125,7 +125,7 @@
             <div class="ms-CommandButton">
                 <button class="ms-CommandButton-button" id="ifInline">
                     <span class="ms-CommandButton-icon ms-fontColor-themePrimary">
-                        <i class="ms-Icon ms-logo--BranchFork2"></i>
+                        <i class="ms-Icon ms-icon--BranchFork2"></i>
                     </span>
                     <span class="ms-CommandButton-label">If (Paragraph)</span>
                 </button>
@@ -133,7 +133,7 @@
         </div>
 
         <div id="list">
-            <h2 class="ms-font-xxl">Insert List or Dictionary Variable</h2>
+            <h2 class="ms-font-xxl">Insert List</h2>
 
             <div class="ms-TextField">
                 <label class="ms-Label" for="inputListVariableName">List Variable Name</label>
@@ -146,7 +146,7 @@
             <div class="ms-CommandButton">
                 <button class="ms-CommandButton-button" id="listPara">
                     <span class="ms-CommandButton-icon ms-fontColor-themePrimary">
-                        <i class="ms-Icon ms-logo--CustomList"></i>
+                        <i class="ms-Icon ms-icon--CustomList"></i>
                     </span>
                     <span class="ms-CommandButton-label">Add List</span>
                 </button>
@@ -157,7 +157,7 @@
             <h2 class="ms-font-xxl">Insert a child template</h2>
             <div class="ms-TextField">
                 <label for="inputTemplateName" class="ms-Label">Child template name</label>
-                <i class="ms-Icon ms-logo--FabricOpenFolderHorizontal" aria-hidden="true"></i>
+                <i class="ms-Icon ms-icon--FabricOpenFolderHorizontal" aria-hidden="true"></i>
                 <input id="inputTemplateName" type="text" class="ms-TextField-field" />
             </div>
             <div class="ms-TextField">
@@ -167,7 +167,7 @@
             <div class="ms-CommandButton">
                 <button class="ms-CommandButton-button" id="insertTemplate">
                     <span class="ms-CommandButton-icon ms-fontColor-themePrimary">
-                        <i class="ms-Icon ms-logo--WordDocument"></i>
+                        <i class="ms-Icon ms-icon--WordDocument"></i>
                     </span>
                     <span class="ms-CommandButton-label">Insert template</span>
                 </button>
@@ -179,7 +179,7 @@
             <div class="ms-CommandButton">
                 <button class="ms-CommandButton-button" id="commentPara">
                     <span class="ms-CommandButton-icon ms-fontColor-themePrimary">
-                        <i class="ms-Icon ms-logo--FileComment"></i>
+                        <i class="ms-Icon ms-icon--FileComment"></i>
                     </span>
                     <span class="ms-CommandButton-label">Toggle Comments for Selection</span>
                 </button>
