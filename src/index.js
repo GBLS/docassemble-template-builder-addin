@@ -69,7 +69,7 @@ async function insertVariable() {
             var textToReplace = range.text;
 
             // FIXME: We need to ignore Jinja statements and expressions -- search looks inside them now
-            var results = context.document.body.search(textToReplace.trim() ); // Word Online seems to select spaces next to a word you double-click on
+            var results = context.document.body.search(textToReplace.trim(), {matchWholeWord: true}); // Word Online seems to select spaces next to a word you double-click on
             context.load(results);
             
             await context.sync();
