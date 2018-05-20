@@ -5,11 +5,17 @@
 
 import * as OfficeHelpers from '@microsoft/office-js-helpers';
 
-// Initialize dropdowns
+// Initialize FabricJS dropdowns
   var DropdownHTMLElements = document.querySelectorAll('.ms-Dropdown');
   for (var i = 0; i < DropdownHTMLElements.length; ++i) {
     var Dropdown = new fabric['Dropdown'](DropdownHTMLElements[i]);
   }
+// initialize FabricJS checkboxes
+  var CheckBoxElements = document.querySelectorAll('.ms-CheckBox');
+  for (var i = 0; i < CheckBoxElements.length; i++) {
+    new fabric['CheckBox'](CheckBoxElements[i]);
+  }
+
 
 $(document).ready(() => {
     $('#ifPara').click(ifPara);

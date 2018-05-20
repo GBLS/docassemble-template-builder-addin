@@ -45,8 +45,16 @@
         <div id="variable">
             <label for="inputVariableName">Variable Name</label>
             <input id="inputVariableName" type="text" class="ms-TextField-field" />
+            <div class="ms-CheckBox">
+                <input tabindex="-1" type="checkbox" class="ms-CheckBox-input">
+                <label role="checkbox" class="ms-CheckBox-field" tabindex="0" aria-checked="false" name="checkboxVariableReplaceAll" id="checkboxVariableReplaceAll">
+                  <span class="ms-Label">Find and Replace All</span> 
+                </label>
+              </div>
+<!--
             <input type="checkbox" id="checkboxVariableReplaceAll" class="ms-checkbox" />
             <label for="checkboxVariableReplaceAll" class="ms-Label">Find and Replace All</label>
+-->
             <!-- below should be single-argument functions only -->
             <div class="ms-Dropdown">
                     <label class="ms-Label">Apply Format</label>
