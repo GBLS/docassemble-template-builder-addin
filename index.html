@@ -127,7 +127,7 @@
                     <span class="ms-CommandButton-icon ms-fontColor-themePrimary">
                         <i class="ms-Icon ms-Icon--BranchFork2"></i>
                     </span>
-                    <span class="ms-CommandButton-label">If (Paragraph)</span>
+                    <span class="ms-CommandButton-label">If (Inline)</span>
                 </button>
             </div>
         </div>
@@ -141,9 +141,11 @@
             </div>
 
             <div class="ms-CheckBox">
-                <label for="checkboxOnlyTrue" class="ms-Label">Display only True (checked) items</label>
-                <input type="checkbox" id="checkboxOnlyTrue" class="ms-checkbox" />
-            </div>
+                    <input tabindex="-1" type="checkbox" class="ms-CheckBox-input" id="checkboxOnlyTrue">
+                    <label role="checkbox" class="ms-CheckBox-field" tabindex="0" aria-checked="false" for="checkboxOnlyTrue">
+                        <span class="ms-Label">Display only checked items</span>
+                    </label>
+                </div>
 
             <div class="ms-CommandButton">
                 <button class="ms-CommandButton-button" id="listPara">
@@ -159,7 +161,6 @@
             <h2 class="ms-font-xl">Insert a child template</h2>
             <div class="ms-TextField">
                 <label for="inputTemplateName" class="ms-Label">Child template name</label>
-                <i class="ms-Icon ms-Icon--FabricOpenFolderHorizontal" aria-hidden="true"></i>
                 <input id="inputTemplateName" type="text" class="ms-TextField-field" />
             </div>
             <div class="ms-TextField">
@@ -177,13 +178,13 @@
         </div>
 
         <div id="comment">
-            <h2 class="ms-font-xl">Comment (temporarily disable)</h2>
+            <h2 class="ms-font-xl">Comment</h2>
             <div class="ms-CommandButton">
                 <button class="ms-CommandButton-button" id="commentPara">
                     <span class="ms-CommandButton-icon ms-fontColor-themePrimary">
-                        <i class="ms-Icon ms-Icon--FileComment"></i>
+                        <i class="ms-Icon ms-Icon--Comment"></i>
                     </span>
-                    <span class="ms-CommandButton-label">Toggle Comments for Selection</span>
+                    <span class="ms-CommandButton-label">Toggle Comments</span>
                 </button>
             </div>
         </div>
