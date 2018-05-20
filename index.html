@@ -33,13 +33,13 @@
         <h1 class="ms-fontSize-su ms-fontWeight-light ms-fontColor-neutralPrimary">Welcome</h1>
     </header>
     <section id="sideload-msg" class="ms-welcome__main">
-        <h2 class="ms-font-xxl ms-fontWeight-semilight ms-fontColor-neutralPrimary ms-u-slideUpIn20">Please sideload this addin to see app body.</h2>
+        <h2 class="ms-font-xl ms-fontWeight-semilight ms-fontColor-neutralPrimary ms-u-slideUpIn20">Please sideload this addin to see app body.</h2>
     </section>
 -->
     <main id="app-body" class="ms-welcome__main" style="display: none;">
 
         <div id="variable">
-            <h2 class="ms-font-xxl">Insert Variables</h2>
+            <h2 class="ms-font-xl">Insert Variables</h2>
             <div class="ms-TextField">
                 <label class="ms-Label" for="inputVariableName">Variable Name</label>
                 <input id="inputVariableName" class="ms-TextField-field" type="text" value="" placeholder="">
@@ -54,7 +54,7 @@
             <!-- below should be single-argument functions only -->
             <div class="ms-Dropdown">
                 <label class="ms-Label">Apply Format</label>
-                <i class="ms-Dropdown-caretDown ms-Icon ms-icon--caretDown"></i>
+                <i class="ms-Dropdown-caretDown ms-Icon ms-Icon--caretDown"></i>
                 <select id="selectVariableFormat" class="ms-Dropdown-select">
                     <option value="">(none)</option>
                     <option value="currency">Currency (localized)</option>
@@ -74,7 +74,7 @@
             <div class="ms-CommandButton">
                 <button class="ms-CommandButton-button" id="insertVariable">
                     <span class="ms-CommandButton-icon ms-fontColor-themePrimary">
-                        <i class="ms-Icon ms-icon--CirclePlus"></i>
+                        <i class="ms-Icon ms-Icon--CirclePlus"></i>
                     </span>
                     <span class="ms-CommandButton-label">Insert Variable</span>
                 </button>
@@ -87,7 +87,7 @@
         </div>
 
         <div id="if">
-            <h2 class="ms-font-xxl">Branch Logic</h2>
+            <h2 class="ms-font-xl">Branch Logic</h2>
 
             <div class="ms-TextField">
                 <label class="ms-Label" for="inputIfExpression">Expression or Variable Name</label>
@@ -117,7 +117,7 @@
             <div class="ms-CommandButton">
                 <button class="ms-CommandButton-button" id="ifPara">
                     <span class="ms-CommandButton-icon ms-fontColor-themePrimary">
-                        <i class="ms-Icon ms-icon--BranchFork2"></i>
+                        <i class="ms-Icon ms-Icon--BranchFork2"></i>
                     </span>
                     <span class="ms-CommandButton-label">If (Paragraph)</span>
                 </button>
@@ -125,7 +125,7 @@
             <div class="ms-CommandButton">
                 <button class="ms-CommandButton-button" id="ifInline">
                     <span class="ms-CommandButton-icon ms-fontColor-themePrimary">
-                        <i class="ms-Icon ms-icon--BranchFork2"></i>
+                        <i class="ms-Icon ms-Icon--BranchFork2"></i>
                     </span>
                     <span class="ms-CommandButton-label">If (Paragraph)</span>
                 </button>
@@ -133,20 +133,22 @@
         </div>
 
         <div id="list">
-            <h2 class="ms-font-xxl">Insert List</h2>
+            <h2 class="ms-font-xl">Insert List</h2>
 
             <div class="ms-TextField">
                 <label class="ms-Label" for="inputListVariableName">List Variable Name</label>
                 <input id="inputListVariableName" type="text" class="ms-TextField-field" />
             </div>
+
             <div class="ms-CheckBox">
                 <label for="checkboxOnlyTrue" class="ms-Label">Display only True (checked) items</label>
                 <input type="checkbox" id="checkboxOnlyTrue" class="ms-checkbox" />
             </div>
+
             <div class="ms-CommandButton">
                 <button class="ms-CommandButton-button" id="listPara">
                     <span class="ms-CommandButton-icon ms-fontColor-themePrimary">
-                        <i class="ms-Icon ms-icon--CustomList"></i>
+                        <i class="ms-Icon ms-Icon--CustomList"></i>
                     </span>
                     <span class="ms-CommandButton-label">Add List</span>
                 </button>
@@ -154,10 +156,10 @@
         </div>
 
         <div id="insert">
-            <h2 class="ms-font-xxl">Insert a child template</h2>
+            <h2 class="ms-font-xl">Insert a child template</h2>
             <div class="ms-TextField">
                 <label for="inputTemplateName" class="ms-Label">Child template name</label>
-                <i class="ms-Icon ms-icon--FabricOpenFolderHorizontal" aria-hidden="true"></i>
+                <i class="ms-Icon ms-Icon--FabricOpenFolderHorizontal" aria-hidden="true"></i>
                 <input id="inputTemplateName" type="text" class="ms-TextField-field" />
             </div>
             <div class="ms-TextField">
@@ -167,7 +169,7 @@
             <div class="ms-CommandButton">
                 <button class="ms-CommandButton-button" id="insertTemplate">
                     <span class="ms-CommandButton-icon ms-fontColor-themePrimary">
-                        <i class="ms-Icon ms-icon--WordDocument"></i>
+                        <i class="ms-Icon ms-Icon--WordDocument"></i>
                     </span>
                     <span class="ms-CommandButton-label">Insert template</span>
                 </button>
@@ -175,11 +177,11 @@
         </div>
 
         <div id="comment">
-            <h2 class="ms-font-xxl">Comment (temporarily disable)</h2>
+            <h2 class="ms-font-xl">Comment (temporarily disable)</h2>
             <div class="ms-CommandButton">
                 <button class="ms-CommandButton-button" id="commentPara">
                     <span class="ms-CommandButton-icon ms-fontColor-themePrimary">
-                        <i class="ms-Icon ms-icon--FileComment"></i>
+                        <i class="ms-Icon ms-Icon--FileComment"></i>
                     </span>
                     <span class="ms-CommandButton-label">Toggle Comments for Selection</span>
                 </button>
