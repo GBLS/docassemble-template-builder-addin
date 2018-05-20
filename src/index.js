@@ -5,20 +5,6 @@
 
 import * as OfficeHelpers from '@microsoft/office-js-helpers';
 
-// Initialize FabricJS components
-  var DropdownHTMLElements = document.querySelectorAll('.ms-Dropdown');
-  for (var i = 0; i < DropdownHTMLElements.length; ++i) {
-    var Dropdown = new fabric['Dropdown'](DropdownHTMLElements[i]);
-  }
-  var CheckBoxElements = document.querySelectorAll('.ms-CheckBox');
-  for (var i = 0; i < CheckBoxElements.length; i++) {
-    new fabric['CheckBox'](CheckBoxElements[i]);
-  }
-  var TextFieldElements = document.querySelectorAll(".ms-TextField");
-  for (var i = 0; i < TextFieldElements.length; i++) {
-    new fabric['TextField'](TextFieldElements[i]);
-  }
-
 $(document).ready(() => {
     $('#ifPara').click(ifPara);
     $('#ifInline').click(ifInline);
@@ -33,6 +19,20 @@ Office.initialize = (reason) => {
     $('#sideload-msg').hide();
     $('#app-body').show();
 };
+
+// Initialize FabricJS components
+var DropdownHTMLElements = document.querySelectorAll('.ms-Dropdown');
+for (var i = 0; i < DropdownHTMLElements.length; ++i) {
+  var Dropdown = new fabric['Dropdown'](DropdownHTMLElements[i]);
+}
+var CheckBoxElements = document.querySelectorAll('.ms-CheckBox');
+for (var i = 0; i < CheckBoxElements.length; i++) {
+  new fabric['CheckBox'](CheckBoxElements[i]);
+}
+var TextFieldElements = document.querySelectorAll(".ms-TextField");
+for (var i = 0; i < TextFieldElements.length; i++) {
+  new fabric['TextField'](TextFieldElements[i]);
+}
 
 ////////////////////////////////////////////////////////////////
 // Docassemble code actions
