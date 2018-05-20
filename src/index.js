@@ -37,6 +37,10 @@ var ChoiceFieldGroupElements = document.querySelectorAll(".ms-ChoiceFieldGroup")
 for (var i = 0; i < ChoiceFieldGroupElements.length; i++) {
   new fabric['ChoiceFieldGroup'](ChoiceFieldGroupElements[i]);
 }
+var CommandButtonElements = document.querySelectorAll(".ms-CommandButton");
+for (var i = 0; i < CommandButtonElements.length; i++) {
+  new fabric['CommandButton'](CommandButtonElements[i]);
+}
 
 ////////////////////////////////////////////////////////////////
 // Docassemble code actions

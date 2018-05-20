@@ -69,9 +69,17 @@
                 </select>
             </div>
 
-            <div role="button" id="insertVariable" class="ms-Button ms-Button--primary">
+            <div class="ms-CommandButton">
+                <button class="ms-CommandButton-button" id="insertVariable" >
+                    <span class="ms-CommandButton-icon ms-fontColor-themePrimary"><i class="ms-Icon ms-Icon--CirclePlus"></i></span>
+                    <span class="ms-CommandButton-label">Insert Variable</span>
+                </button>
+            </div>
+<!--
+            <div role="ms-CommandButton" id="insertVariable" class="ms-Button ms-Button--primary">
                 <span class="ms-Button-label" class="ms-Label">Insert Variable</span>
             </div>
+-->
         </div>
 
         <div id="if">
@@ -79,7 +87,7 @@
                 <label class="ms-Label" for="inputIfExpression">Expression or Variable Name</label>
                 <input id="inputIfExpression" type="text" class="ms-TextField-field">
             </div>
-            <div class="ms-ChoiceFieldGroup" id="ifInlineOrPara" role="radiogroup">
+            <div class="ms-ChoiceFieldGroup" id="choicefieldgroup" role="radiogroup">
                 <div class="ms-ChoiceFieldGroup-title">
                     <label class="ms-Label is-required">Inline or Paragraph</label>
                 </div>
@@ -91,7 +99,7 @@
                         </label>
                     </li>
                     <li class="ms-RadioButton">
-                        <input tabindex="-1" type="radio" class="ms-RadioButton-input" id="ifParaRadio">
+                        <input tabindex="0" type="radio" class="ms-RadioButton-input" id="ifParaRadio">
                         <label role="radio" class="ms-RadioButton-field" tabindex="0" aria-checked="false" name="choicefieldgroup" for="ifParaRadio">
                             <span class="ms-Label">Separate Paragraph (for list item)</span>
                         </label>
