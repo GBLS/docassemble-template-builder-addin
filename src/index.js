@@ -33,6 +33,10 @@ var TextFieldElements = document.querySelectorAll(".ms-TextField");
 for (var i = 0; i < TextFieldElements.length; i++) {
   new fabric['TextField'](TextFieldElements[i]);
 }
+var ChoiceFieldGroupElements = document.querySelectorAll(".ms-ChoiceFieldGroup");
+for (var i = 0; i < ChoiceFieldGroupElements.length; i++) {
+  new fabric['ChoiceFieldGroup'](ChoiceFieldGroupElements[i]);
+}
 
 ////////////////////////////////////////////////////////////////
 // Docassemble code actions

@@ -28,7 +28,8 @@
 
 <body class="ms-font-m ms-welcome">
     <header class="ms-welcome__header ms-bgColor-neutralLighter ms-u-fadeIn500">
-        <img width="90" height="90" src="assets/logo-filled.png" alt="Docassemble Template Builder" title="Docassemble Template Builder" />
+        <img width="90" height="90" src="assets/logo-filled.png" alt="Docassemble Template Builder" title="Docassemble Template Builder"
+        />
         <h1 class="ms-fontSize-su ms-fontWeight-light ms-fontColor-neutralPrimary">Welcome</h1>
     </header>
     <section id="sideload-msg" class="ms-welcome__main">
@@ -43,46 +44,65 @@
             </div>
             <div class="ms-CheckBox">
                 <input tabindex="-1" type="checkbox" class="ms-CheckBox-input" id="checkboxVariableReplaceAll">
-                <label role="checkbox" class="ms-CheckBox-field" tabindex="0" aria-checked="false" name="checkboxVariableReplaceAll" >
-                  <span class="ms-Label">Find and Replace All</span> 
+                <label role="checkbox" class="ms-CheckBox-field" tabindex="0" aria-checked="false" name="checkboxVariableReplaceAll">
+                    <span class="ms-Label">Find and Replace All</span>
                 </label>
             </div>
 
             <!-- below should be single-argument functions only -->
             <div class="ms-Dropdown">
-                    <label class="ms-Label">Apply Format</label>
-                    <i class="ms-Dropdown-caretDown ms-Icon ms-Icon--caretDown"></i>
-                    <select id="selectVariableFormat" class="ms-Dropdown-select">
-                        <option value="">(none)</option>
-                        <option value="currency">Currency (localized)</option>
-                        <option value="capitalize">Capitalize</option>
-                        <option value="indefinite_article">Indefinite Article</option>
-                        <option value="nice_number">Nice Number</option>
-                        <option value="noun_plural">Pluralize noun</option>
-                        <option value="noun_singular">Singularize noun</option>
-                        <option value="ordinal_number">Ordinal Number</option>
-                        <option value="title_case">Title Case</option>
-                        <option value="verb_past">Past tense verb</option>
-                        <option value="verb_present">Present tense verb</option>
-                        <option value="fix_punctuation">Fix punctuation</option>
-                    </select>
-                </div>
+                <label class="ms-Label">Apply Format</label>
+                <i class="ms-Dropdown-caretDown ms-Icon ms-Icon--caretDown"></i>
+                <select id="selectVariableFormat" class="ms-Dropdown-select">
+                    <option value="">(none)</option>
+                    <option value="currency">Currency (localized)</option>
+                    <option value="capitalize">Capitalize</option>
+                    <option value="indefinite_article">Indefinite Article</option>
+                    <option value="nice_number">Nice Number</option>
+                    <option value="noun_plural">Pluralize noun</option>
+                    <option value="noun_singular">Singularize noun</option>
+                    <option value="ordinal_number">Ordinal Number</option>
+                    <option value="title_case">Title Case</option>
+                    <option value="verb_past">Past tense verb</option>
+                    <option value="verb_present">Present tense verb</option>
+                    <option value="fix_punctuation">Fix punctuation</option>
+                </select>
+            </div>
 
             <div role="button" id="insertVariable" class="ms-Button ms-Button--primary">
                 <span class="ms-Button-label" class="ms-Label">Insert Variable</span>
             </div>
-        </div>  
+        </div>
 
         <div id="if">
             <div class="ms-TextField">
                 <label class="ms-Label" for="inputIfExpression">Expression or Variable Name</label>
-                <input id="inputIfExpression" type="text" class="ms-TextField-field" />
+                <input id="inputIfExpression" type="text" class="ms-TextField-field">
+            </div>
+            <div class="ms-ChoiceFieldGroup" id="ifInlineOrPara" role="radiogroup">
+                <div class="ms-ChoiceFieldGroup-title">
+                    <label class="ms-Label is-required">Inline or Paragraph</label>
+                </div>
+                <ul class="ms-ChoiceFieldGroup-list">
+                    <li class="ms-RadioButton">
+                        <input tabindex="-1" type="radio" class="ms-RadioButton-input" id="ifInlineRadio">
+                        <label role="radio" class="ms-RadioButton-field" tabindex="0" aria-checked="false" name="choicefieldgroup" for="ifInlineRadio">
+                            <span class="ms-Label">Inline</span>
+                        </label>
+                    </li>
+                    <li class="ms-RadioButton">
+                        <input tabindex="-1" type="radio" class="ms-RadioButton-input" id="ifParaRadio">
+                        <label role="radio" class="ms-RadioButton-field" tabindex="0" aria-checked="false" name="choicefieldgroup" for="ifParaRadio">
+                            <span class="ms-Label">Separate Paragraph (for list item)</span>
+                        </label>
+                    </li>
+                </ul>
             </div>
             <div role="button" id="ifPara" class="ms-Button ms-Button--primary">
-                <span class="ms-Button-label">IF (paragraph or list item)</span>
+                <span class="ms-Button-label">Insert IF</span>
             </div>
             <div role="button" id="ifInline" class="ms-Button ms-Button--primary">
-                <span class="ms-Button-label">IF (inline)</span>
+                <span class="ms-Button-label">IF</span>
             </div>
         </div>
 
@@ -107,7 +127,7 @@
                 <input id="inputTemplateName" type="text" class="ms-TextField-field" />
             </div>
             <div class="ms-TextField">
-                <label  class="ms-Label" for="inputTemplateOptions">Set child template variables</label>
+                <label class="ms-Label" for="inputTemplateOptions">Set child template variables</label>
                 <input id="inputTemplateOptions" type="text" class="ms-TextField-field" />
             </div>
             <div role="button" id="insertTemplate" class="ms-Button ms-Button--primary">
