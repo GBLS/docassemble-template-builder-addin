@@ -9,28 +9,26 @@
   <!-- Begin Basic Settings: Add-in metadata, used for all versions of Office unless override provided. -->
 
   <!-- IMPORTANT! Id must be unique for your add-in, if you reuse this manifest ensure that you change this id to a new GUID. -->
-  <Id>d4384311-b4fb-4887-9c2a-5b982da56af9</Id>
+  <Id>1377d7eb-0431-460a-852f-699f4d76da37</Id>
 
   <!--Version. Updates from the store only get triggered if there is a version change. -->
-  <Version>1.0.0.7</Version>
-  <ProviderName>Greater Boston Legal Services</ProviderName>
+  <Version>1.0.0.8</Version>
+  <ProviderName>Docassemble</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
   <!-- The display name of your add-in. Used on the store and various places of the Office UI such as the add-ins dialog. -->
   <DisplayName DefaultValue="Docassemble Template Builder" />
   <Description DefaultValue="An add-in that helps with building templates for Docassemble.org guided interviews."/>
 
   <!-- Icon for your add-in. Used on installation screens and the add-ins dialog. -->
-  <IconUrl DefaultValue="https://calm-tor-43985.herokuapp.com/assets/logo-32.png" />
-  <HighResolutionIconUrl DefaultValue="https://calm-tor-43985.herokuapp.com/assets/logo-80.png"/>
+  <IconUrl DefaultValue="https://GBLS.github.io/docassemble-template-builder-addin/static/cat-32.png" />
+  <HighResolutionIconUrl DefaultValue="https://GBLS.github.io/docassemble-template-builder-addin/static/cat-32.png"/>
 
   <!--If you plan to submit this add-in to the Office Store, uncomment the SupportUrl element below-->
-  <SupportUrl DefaultValue="https://www.nonprofittechy.com/projects/projects-docassemble-template-builder/"/>
+  <SupportUrl DefaultValue="https://docassemble.org/docs/officeaddin.html"/>
 
   <!-- Domains that will be allowed when navigating. For example, if you use ShowTaskpane and then have an href link, navigation will only be allowed if the domain is on this list. -->
-  <AppDomains>
-    <AppDomain>nonprofittechy.com</AppDomain>
-    <AppDomain>docassemble.org</AppDomain>
-  </AppDomains>
+  <!--<AppDomains>
+  </AppDomains>-->
   <!--End Basic Settings. -->
 
   <!--Begin TaskPane Mode integration. This section is used if there are no VersionOverrides or if the Office client version does not support add-in commands. -->
@@ -38,7 +36,7 @@
     <Host Name="Document" />
   </Hosts>
   <DefaultSettings>
-    <SourceLocation DefaultValue="https://calm-tor-43985.herokuapp.com/index.html" />
+    <SourceLocation DefaultValue="https://GBLS.github.io/docassemble-template-builder-addin/index.html" />
   </DefaultSettings>
   <!-- End TaskPane Mode integration.  -->
 
@@ -108,6 +106,28 @@
                     <SourceLocation resid="DTB.Taskpane.Url" />
                   </Action>
                 </Control>
+
+                <Control xsi:type="Button" id="DTB.HelpButton">
+                  <Label resid="DTB.HelpButton.Label" />
+                  <Supertip>
+                    <!-- ToolTip title. resid must point to a ShortString resource. -->
+                    <Title resid="DTB.HelpButton.Label" />
+                    <!-- ToolTip description. resid must point to a LongString resource. -->
+                    <Description resid="DTB.TaskpaneButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="DTB.tpicon_16x16" />
+                    <bt:Image size="32" resid="DTB.tpicon_32x32" />
+                    <bt:Image size="80" resid="DTB.tpicon_80x80" />
+                  </Icon>
+
+                  <!-- This is what happens when the command is triggered (E.g. click on the Ribbon). Supported actions are ExecuteFunction or ShowTaskpane. -->
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>ButtonId1</TaskpaneId>
+                    <!-- Provide a url resource id for the location that will be displayed on the task pane. -->
+                    <SourceLocation resid="DTB.Help.Url" />
+                  </Action>
+                </Control>
               </Group>
             </OfficeTab>
           </ExtensionPoint>
@@ -118,19 +138,19 @@
     <!-- You can use resources across hosts and form factors. -->
     <Resources>
       <bt:Images>
-        <bt:Image id="DTB.tpicon_16x16" DefaultValue="https://calm-tor-43985.herokuapp.com/assets/logo-16.png" />
-        <bt:Image id="DTB.tpicon_32x32" DefaultValue="https://calm-tor-43985.herokuapp.com/assets/logo-32.png" />
-        <bt:Image id="DTB.tpicon_80x80" DefaultValue="https://calm-tor-43985.herokuapp.com/assets/logo-80.png" />
+        <bt:Image id="DTB.tpicon_16x16" DefaultValue="https://GBLS.github.io/docassemble-template-builder-addin/static/cat-in-circle-16.png" />
+        <bt:Image id="DTB.tpicon_32x32" DefaultValue="https://GBLS.github.io/docassemble-template-builder-addin/static/cat-in-circle-32.png" />
+        <bt:Image id="DTB.tpicon_80x80" DefaultValue="https://GBLS.github.io/docassemble-template-builder-addin/static/cat-in-circle-80.png" />
       </bt:Images>
       <bt:Urls>
-        <bt:Url id="DTB.Taskpane.Url" DefaultValue="https://calm-tor-43985.herokuapp.com/index.html" />
+        <bt:Url id="DTB.Taskpane.Url" DefaultValue="https://GBLS.github.io/docassemble-template-builder-addin/index.html" />
         <bt:Url id="DTB.Help.Url" DefaultValue="https://docassemble.org/docs.html" />
         <bt:Url id="DTB.GetStarted.LearnMoreUrl" DefaultValue="https://www.nonprofittechy.com/projects/projects-docassemble-template-builder/" />
         <bt:Url id="DTB.DesktopFunctionFile.Url" DefaultValue="https://calm-tor-43985.herokuapp.com/function-file/function-file.html" />
       </bt:Urls>
       <!-- ShortStrings max characters==125. -->
       <bt:ShortStrings>
-        <bt:String id="DTB.TaskpaneButton.Label" DefaultValue="Docassemble" />
+        <bt:String id="DTB.TaskpaneButton.Label" DefaultValue="Docassemble Tasks" />
         <bt:String id="DTB.Group1Label" DefaultValue="Docassemble Template Builder" />
         <bt:String id="DTB.GetStarted.Title" DefaultValue="Get started with Docassemble Template Builder!" />
         <bt:String id="DTB.HelpButton.Label" DefaultValue="Help" />
@@ -138,7 +158,7 @@
       <!-- LongStrings max characters==250. -->
       <bt:LongStrings>
         <bt:String id="DTB.TaskpaneButton.Tooltip" DefaultValue="Click to Show Help" />
-        <bt:String id="DTB.GetStarted.Description" DefaultValue="The Docassemble Template Builder loaded successfully. Click Home | Docassemble."/>
+        <bt:String id="DTB.GetStarted.Description" DefaultValue="The Docassemble Template Builder loaded successfully. Click Home | Show Docassemble Help to get started."/>
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>

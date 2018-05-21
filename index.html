@@ -1,41 +1,31 @@
-<!-- Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT license. -->
-<!-- See LICENSE in the project root for license information -->
-
 <!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="UTF-8" />
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Template Builder</title>
-
-    <!-- Office JavaScript API -->
     <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.debug.js"></script>
-
-    <!-- LOCAL -->
-    <link rel="stylesheet" href="node_modules/office-ui-fabric-js/dist/css/fabric.min.css" />
-    <link rel="stylesheet" href="node_modules/office-ui-fabric-js/dist/css/fabric.components.css" />
-
-    <!-- CDN -->
-    <!-- For the Office UI Fabric, go to http://aka.ms/office-ui-fabric to learn more. -->
-    <!--<link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.2.0/css/fabric.min.css" />-->
-    <!--<link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.2.0/css/fabric.components.min.css" />-->
-
-    <!-- Template styles -->
-    <link href="app.css" rel="stylesheet" type="text/css" />
-</head>
-
-<body class="ms-font-m ms-welcome">
-    <!--   <header class="ms-welcome__header ms-bgColor-neutralLighter ms-u-fadeIn500">
-        <img width="90" height="90" src="assets/logo-filled.png" alt="Docassemble Template Builder" title="Docassemble Template Builder"
-        />
-        <h1 class="ms-fontSize-su ms-fontWeight-light ms-fontColor-neutralPrimary">Welcome</h1>
-    </header>
-    <section id="sideload-msg" class="ms-welcome__main">
-        <h2 class="ms-font-xl ms-fontWeight-semilight ms-fontColor-neutralPrimary ms-u-slideUpIn20">Please sideload this addin to see app body.</h2>
-    </section>
--->
+    <link rel="stylesheet" href="/static/fabric.min.css" />
+    <link rel="stylesheet" href="/static/fabric.components.css" />
+    <link href="/static/app.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body class="ms-font-m ms-welcome">
+    <div id="serverNameDiv">
+      <header class="ms-welcome__header ms-bgColor-neutralLighter ms-u-fadeIn500">
+        <img width="90" height="90" src="/static/cat-in-circle.png" alt="Docassemble Template Builder" title="Docassemble Template Builder" />
+        <h1 class="ms-fontSize-su ms-fontWeight-light ms-fontColor-neutralPrimary">Docassemble Template Builder</h1>
+      </header>
+      <label for="serverName">Your docassemble server</label>
+      <input id="serverName" type="text" class="ms-TextField-field" placeholder="https://interviews.example.org" />      
+      <div style="color: red; display: none;" id="serverNameError">
+        Please enter a valid URL.
+      </div>
+      <div role="button" id="serverSet" class="ms-Button ms-Button--primary">
+        <span class="ms-Button-label ms-Label">Connect to server</span>
+      </div>
+    </div>
+    <iframe height="1200" id="server" style="width: 100%; border-style: none; display: none"></iframe>
     <main id="app-body" class="ms-welcome__main" style="display: none;">
 
         <div id="variable">
@@ -196,11 +186,14 @@
         </div>
 
     </main>
-
-    <script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
-    <script type="text/javascript" src="node_modules/office-ui-fabric-js/dist/js/fabric.js"></script>
-
-
+    <section id="sideload-msg" class="ms-welcome__main">
+        <h2 class="ms-font-xl ms-fontWeight-semilight ms-fontColor-neutralPrimary ms-u-slideUpIn20">Please sideload this addin to see app body.</h2>
+    </section>
+    <script type="text/javascript" src="/static/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/fabric.js"></script>
+    <script type="text/javascript" src="/static/polyfill.js"></script>
+    <script type="text/javascript" src="/static/app.js"></script>
+    <script type="text/javascript" src="/static/js.cookie.min.js"></script>
+    <script type="text/javascript" src="/static/office.js"></script>
 </body>
-
 </html>
