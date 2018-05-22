@@ -27,49 +27,47 @@ function validateUrl(value) {
   return /^https?:\/\/\S/i.test(value);
 }
 
-$( document ).ready(function() {
-  try {
-    var doc = document.getElementById('server').contentWindow.document;
-    doc.open();
-    doc.write('<html><head><title></title></head><body>Loading...</body></html>');
-    doc.close();
-  }
-  catch(err) {
-    console.log(err.message);
-  }
-  $("#app-body").hide();
-  $("#serverSet").on('click', function(){
-    if (!validateUrl($("#serverName").val())){
-      $("#serverNameError").show();
-      return false;
-    }
-    $("#serverNameError").hide();
-    $("#serverNameDiv").hide();
-    serverName = $("#serverName").val();
-    Cookies.set('serverName', serverName, { expires: 999999 });
-    $("#server").attr('src', serverName + '/officeaddin');
-    $("#server").show();
-    return false;
-  });
-  window.addEventListener("message", receiveMessage, false);
-  serverName = Cookies.get('serverName');
-  if (serverName){
-    $("#serverNameDiv").hide();
-    $("#server").attr('src', serverName + '/officeaddin');
-    $("#server").show();
-  }
-  $('#ifPara').click(ifPara);
-  $('#ifInline').click(ifInline);
-  $('#listPara').click(listPara);
-  $('#insertTemplate').click(insertTemplate);
-  $('#commentPara').click(commentPara);
-  $('#insertVariable').click(insertVariable);
-});
-  
-// The initialize function must be run each time a new page is loaded
 Office.initialize = (reason) => {
+  $( document ).ready(function() {
     $('#sideload-msg').hide();
+    try {
+      var doc = document.getElementById('server').contentWindow.document;
+      doc.open();
+      doc.write('<html><head><title></title></head><body>Loading...</body></html>');
+      doc.close();
+    }
+    catch(err) {
+      console.log(err.message);
+    }
+    $("#app-body").hide();
+    $("#serverSet").on('click', function(){
+      if (!validateUrl($("#serverName").val())){
+	$("#serverNameError").show();
+	return false;
+      }
+      $("#serverNameError").hide();
+      $("#serverNameDiv").hide();
+      serverName = $("#serverName").val();
+      Cookies.set('serverName', serverName, { expires: 999999 });
+      $("#server").attr('src', serverName + '/officeaddin');
+      $("#server").show();
+      return false;
+    });
+    window.addEventListener("message", receiveMessage, false);
+    serverName = Cookies.get('serverName');
+    if (serverName){
+      $("#serverNameDiv").hide();
+      $("#server").attr('src', serverName + '/officeaddin');
+      $("#server").show();
+    }
+    $('#ifPara').click(ifPara);
+    $('#ifInline').click(ifInline);
+    $('#listPara').click(listPara);
+    $('#insertTemplate').click(insertTemplate);
+    $('#commentPara').click(commentPara);
+    $('#insertVariable').click(insertVariable);
     $('#app-body').show();
+  });
 };
 
 // Initialize FabricJS components
