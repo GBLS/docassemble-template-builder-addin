@@ -49,16 +49,20 @@ Office.initialize = (reason) => {
       $("#serverNameDiv").hide();
       serverName = $("#serverName").val();
       Cookies.set('serverName', serverName, { expires: 999999 });
-      $("#server").attr('src', serverName + '/officeaddin');
       $("#server").show();
+      $("#server").attr('src', serverName + '/officeaddin');
+      $("#server").attr('height', 1200);
+      $("#server").height("1200px");
       return false;
     });
     window.addEventListener("message", receiveMessage, false);
     serverName = Cookies.get('serverName');
     if (serverName){
       $("#serverNameDiv").hide();
-      $("#server").attr('src', serverName + '/officeaddin');
       $("#server").show();
+      $("#server").attr('src', serverName + '/officeaddin');
+      $("#server").attr('height', 1200);
+      $("#server").height("1200px");
     }
     $('#ifPara').click(ifPara);
     $('#ifInline').click(ifInline);
@@ -66,7 +70,6 @@ Office.initialize = (reason) => {
     $('#insertTemplate').click(insertTemplate);
     $('#commentPara').click(commentPara);
     $('#insertVariable').click(insertVariable);
-    $('#app-body').show();
   });
 };
 
