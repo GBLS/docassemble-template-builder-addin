@@ -135,11 +135,11 @@ for (var i = 0; i < CommandButtonElements.length; i++) {
   new fabric['CommandButton'](CommandButtonElements[i]);
 }
 
-async function testTest(){
+function testTest(){
   return;
 }
 
-async function subInsertVariable(context){
+function subInsertVariable(context){
     const range = context.document.getSelection();
 
     var variableName = document.getElementById('inputVariableName').value;
@@ -174,12 +174,12 @@ async function subInsertVariable(context){
     await context.sync();
 }
 
-async function insertVariable(){
+function insertVariable(){
   return Word.run(subInsertVariable);
 }
 
-async function ifPara() {
-  return Word.run(async function(context){
+function ifPara() {
+  return Word.run(function(context){
             const range = context.document.getSelection();
             var ifExpression = document.getElementById('inputIfExpression').value;
 
@@ -194,8 +194,8 @@ async function ifPara() {
         });
 }
 
-async function ifInline() {
-  return Word.run(async function(context){
+function ifInline() {
+  return Word.run(function(context){
             const range = context.document.getSelection();
             var ifExpression = document.getElementById('inputIfExpression').value;
             var textBefore = '{% if ' + ifExpression + ' %}';
@@ -210,8 +210,8 @@ async function ifInline() {
         });
 }
 
-async function listPara() {
-  return Word.run(async function(context){
+function listPara() {
+  return Word.run(function(context){
             const range = context.document.getSelection();
             var listVariableName = document.getElementById('inputListVariableName').value;
             var onlyTrue = document.getElementById('checkboxOnlyTrue').checked;
@@ -230,8 +230,8 @@ async function listPara() {
         });
 }
 
-async function commentPara() {
-  return Word.run(async function(context){
+function commentPara() {
+  return Word.run(function(context){
         const range = context.document.getSelection();
             
         range.load('text');
@@ -252,8 +252,8 @@ async function commentPara() {
     });
 }
 
-async function insertTemplate() {
-  return Word.run(async function(context){
+function insertTemplate() {
+  return Word.run(function(context){
         const range = context.document.getSelection();
         var templateName = document.getElementById('inputTemplateName').value;
  
@@ -308,7 +308,7 @@ function getSliceAsync(file, nextSlice, sliceCount, gotAllSlices, docdataSlices,
             else {
                 gotAllSlices = false;
                 file.closeAsync();
-                app.showNotification("getSliceAsync Error:", sliceResult.error.message);
+                app.showNotification("getSliceError:", sliceResult.error.message);
             }
     });
 }
