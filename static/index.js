@@ -136,7 +136,7 @@ for (var i = 0; i < CommandButtonElements.length; i++) {
 }
 
 async function insertVariable() {
-    return Word.run(async context => {
+  return Word.run(async function(context){
         const range = context.document.getSelection();
 
         var variableName = document.getElementById('inputVariableName').value;
@@ -173,7 +173,7 @@ async function insertVariable() {
 }
 
 async function ifPara() {
-    return Word.run(async context => {
+  return Word.run(async function(context){
             const range = context.document.getSelection();
             var ifExpression = document.getElementById('inputIfExpression').value;
 
@@ -189,7 +189,7 @@ async function ifPara() {
 }
 
 async function ifInline() {
-    return Word.run(async context => {
+  return Word.run(async function(context){
             const range = context.document.getSelection();
             var ifExpression = document.getElementById('inputIfExpression').value;
             var textBefore = '{% if ' + ifExpression + ' %}';
@@ -205,7 +205,7 @@ async function ifInline() {
 }
 
 async function listPara() {
-    return Word.run(async context => {
+  return Word.run(async function(context){
             const range = context.document.getSelection();
             var listVariableName = document.getElementById('inputListVariableName').value;
             var onlyTrue = document.getElementById('checkboxOnlyTrue').checked;
@@ -225,7 +225,7 @@ async function listPara() {
 }
 
 async function commentPara() {
-    return Word.run(async context => {
+  return Word.run(async function(context){
         const range = context.document.getSelection();
             
         range.load('text');
@@ -247,7 +247,7 @@ async function commentPara() {
 }
 
 async function insertTemplate() {
-    return Word.run(async context => {
+  return Word.run(async function(context){
         const range = context.document.getSelection();
         var templateName = document.getElementById('inputTemplateName').value;
  
