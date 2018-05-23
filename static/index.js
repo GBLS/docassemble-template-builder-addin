@@ -23,6 +23,15 @@ function testServer(){
   $("#server")[0].contentWindow.postMessage({"action": "test"}, serverName);
 }
 
+function fetchFiles(){
+  $("#server")[0].contentWindow.postMessage({"action": "fetchFiles"}, serverName);
+}
+
+function fetchVars(yamlFile){
+  $("#server")[0].contentWindow.postMessage({"action": "fetchVars", "file": yamlFile}, serverName);
+}
+
+
 function validateUrl(value) {
   return /^https?:\/\/\S/i.test(value);
 }
