@@ -60,7 +60,7 @@ function validateUrl(value) {
   return /^https?:\/\/\S/i.test(value);
 }
 
-Office.initialize = (reason) => {
+Office.initialize = function(reason){
   $( document ).ready(function() {
     $('#sideload-msg').hide();
     try {
