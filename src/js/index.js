@@ -3,7 +3,7 @@
  * See LICENSE in the project root for license information.
  */
 
-//import * as OfficeHelpers from '@microsoft/office-js-helpers';
+import * as OfficeHelpers from '@microsoft/office-js-helpers';
 
 var serverName = '';
 var theVars;
