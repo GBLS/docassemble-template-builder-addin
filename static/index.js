@@ -135,41 +135,47 @@ for (var i = 0; i < CommandButtonElements.length; i++) {
   new fabric['CommandButton'](CommandButtonElements[i]);
 }
 
-async function insertVariable() {
-  return Word.run(async function(context){
-        const range = context.document.getSelection();
+async function testTest(){
+  return;
+}
 
-        var variableName = document.getElementById('inputVariableName').value;
-        var variableReplaceAll = document.getElementById('checkboxVariableReplaceAll').checked;
-        var variableFormat = document.getElementById('selectVariableFormat').value;
+async function subInsertVariable(context){
+    const range = context.document.getSelection();
+
+    var variableName = document.getElementById('inputVariableName').value;
+    var variableReplaceAll = document.getElementById('checkboxVariableReplaceAll').checked;
+    var variableFormat = document.getElementById('selectVariableFormat').value;
 
 
-        if (variableFormat == "") {
-            var textToInsert = variableName;
-        } else {
-            var textToInsert = variableFormat + '(' + variableName + ')';
-        }
+    if (variableFormat == "") {
+	var textToInsert = variableName;
+    } else {
+	var textToInsert = variableFormat + '(' + variableName + ')';
+    }
 
-        range.load('text');
+    range.load('text');
 
-        if (! variableReplaceAll) {
-            range.insertText('{{ ' + variableName + ' }}','Replace');
-        } else {
-            await context.sync();
-            var textToReplace = range.text;
+    if (! variableReplaceAll) {
+	range.insertText('{{ ' + variableName + ' }}','Replace');
+    } else {
+	await context.sync();
+	var textToReplace = range.text;
 
-            var results = context.document.body.search(textToReplace.trim(), {matchWholeWord: true});
-            context.load(results);
-            
-            await context.sync();
+	var results = context.document.body.search(textToReplace.trim(), {matchWholeWord: true});
+	context.load(results);
 
-            for (var i = 0; i < results.items.length; i++) {
-                results.items[i].insertText('{{ ' + textToInsert + ' }}', "Replace");
-            }
-        }
+	await context.sync();
 
-        await context.sync();
-    });
+	for (var i = 0; i < results.items.length; i++) {
+	    results.items[i].insertText('{{ ' + textToInsert + ' }}', "Replace");
+	}
+    }
+
+    await context.sync();
+}
+
+async function insertVariable(){
+  return Word.run(subInsertVariable);
 }
 
 async function ifPara() {
