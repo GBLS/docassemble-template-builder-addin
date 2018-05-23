@@ -26,12 +26,12 @@ function receiveMessage(event)
     var firstOption = $("<option>");
     firstOption.text("Select an interview...");
     $("#interviewName").append(firstOption);
-    var n = event.data.action.files.length;
+    var n = event.data.files.length;
     for (var i = 0; i < n; i++){
       var newOption = $("<option>");
-      newOption.attr('value', event.data.action.files[i]);
-      newOption.text(event.data.action.files[i]);
-      if (event.data.action.files[i] == theSelection){
+      newOption.attr('value', event.data.files[i]);
+      newOption.text(event.data.files[i]);
+      if (event.data.files[i] == theSelection){
 	newOption.prop('selected', true);
       }
       $("#interviewName").append(newOption);
