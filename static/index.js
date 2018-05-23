@@ -6,6 +6,8 @@
 //import * as OfficeHelpers from '@microsoft/office-js-helpers';
 
 var serverName = '';
+var theVars;
+var theVocab;
 function receiveMessage(event)
 {
   if (event.origin !== serverName){
@@ -16,6 +18,29 @@ function receiveMessage(event)
   if (event.data.action == 'initialize'){
     $("#server").hide();
     $("#app-body").show();
+    fetchFiles();
+  }
+  if (event.data.action == 'files'){
+    var theSelection = $("#interviewName").val();
+    $("#interviewName").empty();
+    var firstOption = $("<option>");
+    firstOption.text("Select an interview...");
+    $("#interviewName").append(firstOption);
+    var n = event.data.action.files.length;
+    for (var i = 0; i < n; i++){
+      var newOption = $("<option>");
+      newOption.attr('value', event.data.action.files[i]);
+      newOption.text(event.data.action.files[i]);
+      if (event.data.action.files[i] == theSelection){
+	newOption.prop('selected', true);
+      }
+      $("#interviewName").append(newOption);
+    }
+  }
+  if (event.data.action == 'vars'){
+    theVars = event.data.vars;
+    theVocab = event.data.vocab;
+    fetchFiles();
   }
 }
 
@@ -30,7 +55,6 @@ function fetchFiles(){
 function fetchVars(yamlFile){
   $("#server")[0].contentWindow.postMessage({"action": "fetchVars", "file": yamlFile}, serverName);
 }
-
 
 function validateUrl(value) {
   return /^https?:\/\/\S/i.test(value);
@@ -79,6 +103,16 @@ Office.initialize = (reason) => {
     $('#insertTemplate').click(insertTemplate);
     $('#commentPara').click(commentPara);
     $('#insertVariable').click(insertVariable);
+    $("#interviewName").on('change', function(event){
+      var newYaml = $("#interviewName").val();
+      if (newYaml){
+	console.log("YAML is now " + newYaml);
+	fetchVars(newYaml);
+      }
+      else{
+	console.log("YAML was blank");
+      }
+    });
   });
 };
 
