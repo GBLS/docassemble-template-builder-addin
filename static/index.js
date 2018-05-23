@@ -3,8 +3,6 @@
  * See LICENSE in the project root for license information.
  */
 
-//import * as OfficeHelpers from '@microsoft/office-js-helpers';
-
 var serverName = '';
 var theVars;
 var theVocab;
@@ -116,7 +114,6 @@ Office.initialize = function(reason){
   });
 };
 
-// Initialize FabricJS components
 var DropdownHTMLElements = document.querySelectorAll('.ms-Dropdown');
 for (var i = 0; i < DropdownHTMLElements.length; ++i) {
   var Dropdown = new fabric['Dropdown'](DropdownHTMLElements[i]);
@@ -138,14 +135,11 @@ for (var i = 0; i < CommandButtonElements.length; i++) {
   new fabric['CommandButton'](CommandButtonElements[i]);
 }
 
-////////////////////////////////////////////////////////////////
-// Docassemble code actions
 async function insertVariable() {
     return Word.run(async context => {
         const range = context.document.getSelection();
 
         var variableName = document.getElementById('inputVariableName').value;
-        //checkboxVariableReplaceAll
         var variableReplaceAll = document.getElementById('checkboxVariableReplaceAll').checked;
         var variableFormat = document.getElementById('selectVariableFormat').value;
 
@@ -164,8 +158,7 @@ async function insertVariable() {
             await context.sync();
             var textToReplace = range.text;
 
-            // FIXME: We need to ignore Jinja statements and expressions -- search looks inside them now
-            var results = context.document.body.search(textToReplace.trim(), {matchWholeWord: true}); // Word Online seems to select spaces next to a word you double-click on
+            var results = context.document.body.search(textToReplace.trim(), {matchWholeWord: true});
             context.load(results);
             
             await context.sync();
@@ -184,7 +177,6 @@ async function ifPara() {
             const range = context.document.getSelection();
             var ifExpression = document.getElementById('inputIfExpression').value;
 
-            // Read the range text
             range.load('text');
             var textBefore = '{%p if ' + ifExpression + ' %}';
 
@@ -202,7 +194,6 @@ async function ifInline() {
             var ifExpression = document.getElementById('inputIfExpression').value;
             var textBefore = '{% if ' + ifExpression + ' %}';
 
-            // Read the range text
             range.load('text');
 
             range.insertText(textBefore,'Before');
@@ -223,7 +214,6 @@ async function listPara() {
             } else {
                 var textBefore = '{%p for item in ' + listVariableName + '%}'; 
             }
-            // Read the range text
             range.load('text');
             range.insertText('{{ item }}','Replace');
             range.insertParagraph(textBefore,'Before');
@@ -238,25 +228,19 @@ async function commentPara() {
     return Word.run(async context => {
         const range = context.document.getSelection();
             
-        // Read the range text
         range.load('text');
-        await context.sync(); // Guess this has a performance penalty?
+        await context.sync();
         
-        // Regexp with 3 groups: {# , text between comments, #}. We match both whitespace and non-whitespace, including newlines
         var re = new RegExp('({#)([\\s\\S]*)(#})');
         var matches = re.exec(range.text);
 
-        if (matches) { // index 1 is the uncommented string
-            // This is not correct as it removes formatting from the text
-            // This sample looks like it shows how to do it correctly: https://github.com/OfficeDev/Word-Add-in-JS-SpecKit/blob/master/scripts/boilerplate.js in addBoilerplateParagraph
-            // we should use var paragraphs = context.document.getSelection().paragraphs; and then loop through paragraph collection
+        if (matches) {
             range.insertText(matches[2],'Replace'); 
             console.log('Removed comments.')
         } else {
             range.insertParagraph('{#','Before');
             range.insertParagraph('#}','After');
             console.log('Added comments.')
-            // we should extend the selection to include the newly added text
         }
         await context.sync();
     });
@@ -274,7 +258,6 @@ async function insertTemplate() {
             var textBefore = '{{p include_docx_template("' + templateName + '", ' + templateOptions + ') }}'; 
         }
 
-        // Read the range text
         range.load('text');
         
         range.insertText(textBefore,'Replace');
@@ -284,22 +267,15 @@ async function insertTemplate() {
     });
 }
 
-/////////////////////////////////////////////////////////////////////
-// Helper functions
-
-// File handling
 function getDocumentAsCompressed() {
     Office.context.document.getFileAsync(Office.FileType.Compressed, {  }, 
         function (result) {
             if (result.status == "succeeded") {
-            // If the getFileAsync call succeeded, then
-            // result.value will return a valid File Object.
             var myFile = result.value;
             var sliceCount = myFile.sliceCount;
             var slicesReceived = 0, gotAllSlices = true, docdataSlices = [];
             app.showNotification("File size:" + myFile.size + " #Slices: " + sliceCount);
 
-            // Get the file slices.
             getSliceAsync(myFile, 0, sliceCount, gotAllSlices, docdataSlices, slicesReceived);
             }
             else {
@@ -311,16 +287,11 @@ function getDocumentAsCompressed() {
 function getSliceAsync(file, nextSlice, sliceCount, gotAllSlices, docdataSlices, slicesReceived) {
     file.getSliceAsync(nextSlice, function (sliceResult) {
         if (sliceResult.status == "succeeded") {
-            if (!gotAllSlices) { // Failed to get all slices, no need to continue.
+            if (!gotAllSlices) {
                 return;
             }
-
-            // Got one slice, store it in a temporary array.
-            // (Or you can do something else, such as
-            // send it to a third-party server.)
             docdataSlices[sliceResult.value.index] = sliceResult.value.data;
             if (++slicesReceived == sliceCount) {
-               // All slices have been received.
                file.closeAsync();
                onGotAllSlices(docdataSlices);
             }
@@ -346,7 +317,4 @@ function onGotAllSlices(docdataSlices) {
     for (var j = 0; j < docdata.length; j++) {
         fileContent += String.fromCharCode(docdata[j]);
     }
-
-    // Now all the file content is stored in 'fileContent' variable,
-    // you can do something with it, such as print, fax...
 }
