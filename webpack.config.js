@@ -1,10 +1,17 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
   resolve: {
     aliasFields: ["browser"]
   },
-  entry: ["babel-polyfill", './src/js/index.js'],
-  output: {
-    path: __dirname + '/dist',
-    filename: 'bundle.js'
-  }
+  entry: {
+    polyfill: "babel-polyfill",
+    app: './src/js/index.js'
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './index.html',
+      chunks: ['polyfill', 'app']
+    })
+  ]
 };
