@@ -127,7 +127,7 @@
                         return regeneratorRuntime.awrap(e.sync());
 
                       case 8:
-                        console.log(`The selected text was ${t.text}.`);
+                        console.log('The selected text was ${t.text}.');
 
                       case 9:
                       case "end":
@@ -165,7 +165,7 @@
                         return regeneratorRuntime.awrap(e.sync());
 
                       case 7:
-                        console.log(`The selected text was ${t.text}.`);
+                        console.log('The selected text was ${t.text}.');
 
                       case 8:
                       case "end":
@@ -204,7 +204,7 @@
                         return regeneratorRuntime.awrap(e.sync());
 
                       case 9:
-                        console.log(`The selected text was ${t.text}.`);
+                        console.log('The selected text was ${t.text}.');
 
                       case 10:
                       case "end":
@@ -279,7 +279,7 @@
                         return regeneratorRuntime.awrap(e.sync());
 
                       case 7:
-                        console.log(`The selected text was ${t.text}.`);
+                        console.log('The selected text was ${t.text}.');
 
                       case 8:
                       case "end":
