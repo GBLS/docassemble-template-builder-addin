@@ -8,6 +8,15 @@ module.exports = {
     polyfill: "babel-polyfill",
     app: './src/js/index.js'
   },
+  module: {
+    rules: [
+      {
+	test: /\.js$/,
+	exclude: /node_modules/,
+	loader: "babel-loader"
+      }
+    ]
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: './index.html',
