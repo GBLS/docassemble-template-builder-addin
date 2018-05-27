@@ -143,6 +143,10 @@
     color: red;
 }
 
+.successmessage {
+    color: green;
+}
+
 .ms-Button {
     margin-bottom: 5px !important;
 }
