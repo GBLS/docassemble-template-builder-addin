@@ -142,3 +142,23 @@ body {
 .errormessage {
     color: red;
 }
+
+.ms-Button {
+    margin-bottom: 5px !important;
+}
+
+.ms-ComboBox {
+    margin-bottom: 5px !important;
+}
+
+.ms-Dropdown {
+    margin-bottom: 5px !important;
+}
+
+.ms-Checkbox {
+    margin-bottom: 5px !important;
+}
+
+.ms-TextField {
+    margin-bottom: 5px !important;
+}
