@@ -18,8 +18,8 @@
   <Description DefaultValue="An add-in that helps with building templates for Docassemble.org guided interviews."/>
 
   <!-- Icon for your add-in. Used on installation screens and the add-ins dialog. -->
-  <IconUrl DefaultValue="https://gbls.github.io/docassemble-template-builder-addin/static/logo-32.png" />
-  <HighResolutionIconUrl DefaultValue="https://gbls.github.io/docassemble-template-builder-addin/static/logo-80.png"/>
+  <IconUrl DefaultValue="https://gbls.github.io/docassemble-template-builder-addin/static/media/logo-32.png" />
+  <HighResolutionIconUrl DefaultValue="https://gbls.github.io/docassemble-template-builder-addin/static/media/logo-80.png"/>
 
   <!--If you plan to submit this add-in to the Office Store, uncomment the SupportUrl element below-->
   <SupportUrl DefaultValue="https://docassemble.org/docs/officeaddin.html"/>
@@ -138,9 +138,9 @@
     <!-- You can use resources across hosts and form factors. -->
     <Resources>
       <bt:Images>
-        <bt:Image id="DTB.tpicon_16x16" DefaultValue="https://gbls.github.io/docassemble-template-builder-addin/static/logo-16.png" />
-        <bt:Image id="DTB.tpicon_32x32" DefaultValue="https://gbls.github.io/docassemble-template-builder-addin/static/logo-32.png" />
-        <bt:Image id="DTB.tpicon_80x80" DefaultValue="https://gbls.github.io/docassemble-template-builder-addin/static/logo-80.png" />
+        <bt:Image id="DTB.tpicon_16x16" DefaultValue="https://gbls.github.io/docassemble-template-builder-addin/static/media/logo-16.png" />
+        <bt:Image id="DTB.tpicon_32x32" DefaultValue="https://gbls.github.io/docassemble-template-builder-addin/static/media/logo-32.png" />
+        <bt:Image id="DTB.tpicon_80x80" DefaultValue="https://gbls.github.io/docassemble-template-builder-addin/static/media/logo-80.png" />
       </bt:Images>
       <bt:Urls>
         <bt:Url id="DTB.Taskpane.Url" DefaultValue="https://gbls.github.io/docassemble-template-builder-addin/index.html" />
