@@ -27,6 +27,7 @@ class AddinApp extends React.Component<any, any> {
             showServerNameError: false,
             frameStage: serverName ? "wait" : "standby",
             serverName: serverName,
+            tempServerName: "",
             showApp: false,
             interviewList: [],
             interviewOptions: [],
@@ -42,14 +43,17 @@ class AddinApp extends React.Component<any, any> {
             selectedList: null,
             childTemplateList: [],
             selectedChildTemplate: null,
-            childTemplateVariables: null
+            childTemplateVariables: null,
+            uploadMessage: null,
+            inUploadProcess: false
         }
         // All methods need to be initialized like this.
         this.receiveMessage = this.receiveMessage.bind(this);
         this.handleServerNameChange = this.handleServerNameChange.bind(this);
+        this.handleSetServer = this.handleSetServer.bind(this);
         this.fetchVars = this.fetchVars.bind(this);
         this.fetchFiles = this.fetchFiles.bind(this);
-        this.handleSetServer = this.handleSetServer.bind(this);
+        this.uploadFile = this.uploadFile.bind(this);
         this.handleInterviewChange = this.handleInterviewChange.bind(this);
         this.handleVarChanged = this.handleVarChanged.bind(this);
         this.handleFindReplaceChange = this.handleFindReplaceChange.bind(this);
@@ -65,6 +69,9 @@ class AddinApp extends React.Component<any, any> {
         this.handleChildTemplateVariablesChanged = this.handleChildTemplateVariablesChanged.bind(this);
         this.insertTemplate = this.insertTemplate.bind(this);
         this.commentPara = this.commentPara.bind(this);
+        this.changeServer = this.changeServer.bind(this);
+        this.hideUploadMessage = this.hideUploadMessage.bind(this);
+        this.showUploadFail = this.showUploadFail.bind(this);
     }
 
     render() {
@@ -83,8 +90,16 @@ class AddinApp extends React.Component<any, any> {
                         onClick={ this.handleSetServer }
                     />
                 </div>
-                <iframe id="server" src={ this.state.serverName ? this.state.serverName + '/officeaddin' : 'about:blank'} className={ this.state.frameStage == "wait" ? 'shownelement' : 'hiddenelement' } />
+                <iframe id="server" src={ this.state.serverName ? this.state.serverName + '/officeaddin' : 'static/html/blank.html'} className={ this.state.frameStage == "wait" ? 'shownelement' : 'hiddenelement' } />
                 <main id="app-body" className={ this.state.showApp ? 'ms-welcome__main' : 'hiddenelement' }>
+                    <DefaultButton
+                        iconProps={ { iconName: 'CloudUpload' } }
+                        onClick={ this.uploadFile }
+                        text="Upload template to Playground"
+                    />
+                    <div className={ this.state.uploadMessage != null ? 'shownelement' : 'hiddenelement' }>
+                        { this.state.uploadMessage }
+                    </div>
                     <Dropdown
                         label='Interview'
                         onChanged={ this.handleInterviewChange }
@@ -171,6 +186,11 @@ class AddinApp extends React.Component<any, any> {
                         onClick={ this.commentPara }
                         text="Toggle Comments"
                         primary={ true }
+                    />
+                    <DefaultButton
+                        iconProps={ { iconName: 'Cloud' } }
+                        onClick={ this.changeServer }
+                        text="Use another server"
                     />
                 </main>
             </div>);
@@ -467,6 +487,50 @@ class AddinApp extends React.Component<any, any> {
 
     ////////////////////////////////////////////////////////////////
     // Core methods
+
+    changeServer() {
+        Cookies.remove('serverName');
+        window.location.reload(false);
+    }
+
+    uploadFile() {
+        this.setState({uploadMessage: "Collecting file...", inUploadProcess: true});
+        var oThis = this;
+        setTimeout(function(){
+            oThis.showUploadFail()
+        }, 10000);
+        var server : any = document.getElementById('server');
+        var fileName = window.Office.context.document.url;
+        console.log("the raw fileName is " + fileName);
+        fileName = fileName.replace(/.*[\/\\]/, '');
+        fileName = fileName.replace(/\.docx\.docx/, '.docx');
+        console.log("the fileName is " + fileName);
+        var yamlFile = this.state.currentInterview;
+        if (yamlFile == null){
+            yamlFile = '';
+        }
+        var action = Object();
+        action.action = "uploadFile";
+        action.yamlFile = yamlFile;
+        action.fileName = fileName;
+        var theServerName = this.state.serverName;
+        getDocumentAsCompressed(function(docdataSlices: any) {
+            console.log("in callback func");
+            var docdata: any = [];
+            for (var i = 0; i < docdataSlices.length; i++) {
+                docdata = docdata.concat(docdataSlices[i]);
+            }
+
+            var fileContent : any = new String();
+            for (var j = 0; j < docdata.length; j++) {
+                fileContent += String.fromCharCode(docdata[j]);
+            }
+            action.content = 'data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64,' + btoa(fileContent);
+            oThis.setState({uploadMessage: "Uploading file..."});
+            server.contentWindow.postMessage(action, theServerName);
+        });
+    }
+    
     fetchVars(yamlFile: string): void {
         if (yamlFile == null){
             console.log("fetchVars: yamlFile was null");
@@ -487,20 +551,20 @@ class AddinApp extends React.Component<any, any> {
     }
     
     handleServerNameChange(newvalue: any) {
-        this.setState({ serverName: newvalue });
+        this.setState({ tempServerName: newvalue });
     }
 
     handleSetServer(event: any) {
         console.log("handleSetServer");
-        if (!validateUrl(this.state.serverName)) {
+        if (!validateUrl(this.state.tempServerName)) {
             this.setState({showServerNameError: true});
             return;
         }
         else {
             this.setState({showServerNameError: false});
         }
-        Cookies.set('serverName', this.state.serverName, { expires: 999999 });
-        this.setState({frameStage: 'wait', showServerName: false});
+        Cookies.set('serverName', this.state.tempServerName, { expires: 999999 });
+        this.setState({frameStage: 'wait', showServerName: false, serverName: this.state.tempServerName});
     }
 
     receiveMessage(event: any) {
@@ -529,6 +593,12 @@ class AddinApp extends React.Component<any, any> {
         if (event.data.action == 'vars') {
             var arr = Array();
             var arrList = Array();
+            var n = event.data.vars.undefined_names.length;
+            for(var i = 0; i < n; ++i){
+                var variable_name = event.data.vars.undefined_names[i];
+                var newOption: IComboBoxOption = {key: variable_name, text: variable_name}
+                arr.push(newOption);
+            }
             var n = event.data.vars.var_list.length;
             for(var i = 0; i < n; ++i){
                 var info = event.data.vars.var_list[i];
@@ -540,6 +610,11 @@ class AddinApp extends React.Component<any, any> {
                     }
                 }
             }
+            arr.sort(function(a, b){
+                if(a.text < b.text) return -1;
+                if(a.text > b.text) return 1;
+                return 0;
+            });
             var arrChildTemplates = Array();
             var n = event.data.vars.templates_list.length;
             for(var i = 0; i < n; ++i){
@@ -551,8 +626,32 @@ class AddinApp extends React.Component<any, any> {
             }
             //console.log("varOptions is " + arr.length + " elements long from " + n);
             //console.log("varOptions is " + JSON.stringify(arr));
+            if (event.data.hasOwnProperty('uploaded')){
+                this.setState({uploadMessage: "Upload successful"});
+                this.hideUploadMessage();
+            }
             this.setState({varOptions: arr, listOptions: arrList, varList: event.data.vars, vocabList: event.data.vocab, childTemplateList: arrChildTemplates});
             this.fetchFiles();
+        }
+        if (event.data.action == 'fail') {
+            if (event.data.tried == 'uploadFile'){
+                this.showUploadFail();
+            }            
+        }
+    }
+
+    hideUploadMessage(){
+        this.setState({inUploadProcess: false});
+        var oThis = this;
+        setTimeout(function(){
+            oThis.setState({uploadMessage: null});
+        }, 3000);
+    }
+
+    showUploadFail(){
+        if (this.state.inUploadProcess){
+            this.setState({inUploadProcess: false, uploadMessage: "Upload failed."});
+            this.hideUploadMessage();
         }
     }
     
@@ -566,27 +665,29 @@ class AddinApp extends React.Component<any, any> {
 // Helper functions
 
 // File handling
-function getDocumentAsCompressed() {
+function getDocumentAsCompressed(onGotAllSlices: any) {
+    console.log("in getDocumentAsCompressed");
     window.Office.context.document.getFileAsync(window.Office.FileType.Compressed, {  }, 
-                                         function (result: any) {
-                                             if (result.status == "succeeded") {
-                                                 // If the getFileAsync call succeeded, then
-                                                 // result.value will return a valid File Object.
-                                                 var myFile = result.value;
-                                                 var sliceCount = myFile.sliceCount;
-                                                 var slicesReceived = 0, gotAllSlices = true, docdataSlices : any = [];
-                                                 //app.showNotification("File size:" + myFile.size + " #Slices: " + sliceCount);
+                                                function (result: any) {
+                                                    if (result.status == "succeeded") {
+                                                        // If the getFileAsync call succeeded, then
+                                                        // result.value will return a valid File Object.
+                                                        var myFile = result.value;
+                                                        var sliceCount = myFile.sliceCount;
+                                                        var slicesReceived = 0, gotAllSlices = true, docdataSlices : any = [];
+                                                        //app.showNotification("File size:" + myFile.size + " #Slices: " + sliceCount);
 
-                                                 // Get the file slices.
-                                                 getSliceAsync(myFile, 0, sliceCount, gotAllSlices, docdataSlices, slicesReceived);
-                                             }
-                                             else {
-                                                 //app.showNotification("Error:", result.error.message);
-                                             }
-                                         });
+                                                        // Get the file slices.
+                                                        getSliceAsync(myFile, 0, sliceCount, gotAllSlices, docdataSlices, slicesReceived, onGotAllSlices);
+                                                    }
+                                                    else {
+                                                        //app.showNotification("Error:", result.error.message);
+                                                    }
+                                                });
 }
 
-function getSliceAsync(file: any, nextSlice: any, sliceCount: any, gotAllSlices: any, docdataSlices: any, slicesReceived: any) {
+function getSliceAsync(file: any, nextSlice: any, sliceCount: any, gotAllSlices: any, docdataSlices: any, slicesReceived: any, onGotAllSlices: any) {
+    console.log("in getSliceAsync");
     file.getSliceAsync(nextSlice, function (sliceResult: any) {
         if (sliceResult.status == "succeeded") {
             if (!gotAllSlices) { // Failed to get all slices, no need to continue.
@@ -603,7 +704,7 @@ function getSliceAsync(file: any, nextSlice: any, sliceCount: any, gotAllSlices:
                 onGotAllSlices(docdataSlices);
             }
             else {
-                getSliceAsync(file, ++nextSlice, sliceCount, gotAllSlices, docdataSlices, slicesReceived);
+                getSliceAsync(file, ++nextSlice, sliceCount, gotAllSlices, docdataSlices, slicesReceived, onGotAllSlices);
             }
         }
         else {
@@ -612,21 +713,6 @@ function getSliceAsync(file: any, nextSlice: any, sliceCount: any, gotAllSlices:
             //app.showNotification("getSliceAsync Error:", sliceResult.error.message);
         }
     });
-}
-
-function onGotAllSlices(docdataSlices: any) {
-    var docdata: any = [];
-    for (var i = 0; i < docdataSlices.length; i++) {
-        docdata = docdata.concat(docdataSlices[i]);
-    }
-
-    var fileContent = new String();
-    for (var j = 0; j < docdata.length; j++) {
-        fileContent += String.fromCharCode(docdata[j]);
-    }
-
-    // Now all the file content is stored in 'fileContent' variable,
-    // you can do something with it, such as print, fax...
 }
 
 function validateUrl(value: string) {
