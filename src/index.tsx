@@ -513,34 +513,36 @@ class AddinApp extends React.Component<any, any> {
             oThis.showUploadFail()
         }, 10000);
         var server : any = document.getElementById('server');
-        var fileName = window.Office.context.document.url;
-        console.log("the raw fileName is " + fileName);
-        fileName = fileName.replace(/.*[\/\\]/, '');
-        fileName = fileName.replace(/\.docx\.docx/, '.docx');
-        console.log("the fileName is " + fileName);
-        var yamlFile = this.state.currentInterview;
-        if (yamlFile == null){
-            yamlFile = '';
-        }
-        var action = Object();
-        action.action = "uploadFile";
-        action.yamlFile = yamlFile;
-        action.fileName = fileName;
-        var theServerName = this.state.serverName;
-        getDocumentAsCompressed(function(docdataSlices: any) {
-            console.log("in callback func");
-            var docdata: any = [];
-            for (var i = 0; i < docdataSlices.length; i++) {
-                docdata = docdata.concat(docdataSlices[i]);
+        window.Office.context.document.getFilePropertiesAsync(function (asyncResult: any) {
+            var fileName = asyncResult.value.url;
+            console.log("the raw fileName is " + fileName);
+            fileName = fileName.replace(/.*[\/\\]/, '');
+            fileName = fileName.replace(/\.docx\.docx/, '.docx');
+            console.log("the fileName is " + fileName);
+            var yamlFile = oThis.state.currentInterview;
+            if (yamlFile == null){
+                yamlFile = '';
             }
+            var action = Object();
+            action.action = "uploadFile";
+            action.yamlFile = yamlFile;
+            action.fileName = fileName;
+            var theServerName = oThis.state.serverName;
+            getDocumentAsCompressed(function(docdataSlices: any) {
+                console.log("in callback func");
+                var docdata: any = [];
+                for (var i = 0; i < docdataSlices.length; i++) {
+                    docdata = docdata.concat(docdataSlices[i]);
+                }
 
-            var fileContent : any = new String();
-            for (var j = 0; j < docdata.length; j++) {
-                fileContent += String.fromCharCode(docdata[j]);
-            }
-            action.content = 'data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64,' + btoa(fileContent);
-            oThis.setState({uploadMessage: "Uploading file..."});
-            server.contentWindow.postMessage(action, theServerName);
+                var fileContent : any = new String();
+                for (var j = 0; j < docdata.length; j++) {
+                    fileContent += String.fromCharCode(docdata[j]);
+                }
+                action.content = 'data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64,' + btoa(fileContent);
+                oThis.setState({uploadMessage: "Uploading file..."});
+                server.contentWindow.postMessage(action, theServerName);
+            });
         });
     }
     
