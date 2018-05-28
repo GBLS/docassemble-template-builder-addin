@@ -19,6 +19,26 @@ if (process.env.NODE_ENV === 'production') {
   }));
 }
 
+var babelLoader = {
+  loader: 'babel-loader',
+  options: {
+    cacheDirectory: true,
+    presets: [
+      "react",
+      [
+        "es2015",
+        {
+          "modules": false
+        }
+      ],
+      "es2016"
+    ],
+    plugins: [
+      "transform-async-to-generator"
+    ]
+  }
+};
+
 module.exports = {
   mode: 'production',
   entry: {
@@ -37,7 +57,14 @@ module.exports = {
     rules: [
       {
 	test: /\.tsx?$/,
-	loader: "awesome-typescript-loader"
+        use: [
+          {
+            loader: 'ts-loader',
+            options: {
+              logLevel: 'info'
+            }
+          }
+        ]
       },
       {
 	enforce: "pre",
@@ -47,15 +74,6 @@ module.exports = {
         test: /.js$/,
         exclude: /node_modules/,
         include: path.join(__dirname, 'src'),
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: ['es2015', 'react'],
-              plugins: ['transform-class-properties']
-            }
-          }
-        ]
       },
       {
         test: /\.(jpe?g|ico|png|gif|eot|woff|woff2|ttf|svg)$/i,

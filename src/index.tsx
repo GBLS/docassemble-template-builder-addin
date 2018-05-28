@@ -1,5 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import * as ES6Promise from "es6-promise";
+ES6Promise.polyfill();
 
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import { DefaultButton, ActionButton, IButtonProps } from 'office-ui-fabric-react/lib/Button';
@@ -201,6 +203,7 @@ class AddinApp extends React.Component<any, any> {
     insertVariable() {
         console.log("insertVariable");
         window.Word.run(async (context: any) => {
+            console.log("insertVariable inside");
             var variableName = this.state.selectedVar;
             var variableReplaceAll = this.state.findReplace;
             var variableFormat = this.state.applyFormat;
@@ -242,7 +245,9 @@ class AddinApp extends React.Component<any, any> {
     }
 
     ifPara() {
+        console.log("ifPara");
         window.Word.run(async (context: any) => {
+            console.log("ifPara inside");
             var ifExpression = this.state.selectedExpression;
 
             if (ifExpression == null){
@@ -264,7 +269,9 @@ class AddinApp extends React.Component<any, any> {
     }
 
     ifInline() {
+        console.log("ifInline");
         window.Word.run(async (context: any) => {
+            console.log("ifInline inside");
             var ifExpression = this.state.selectedExpression;
 
             if (ifExpression == null){
@@ -287,7 +294,9 @@ class AddinApp extends React.Component<any, any> {
     }
 
     listPara() {
+        console.log("listPara");
         window.Word.run(async (context: any) => {
+            console.log("listPara inside");
             var listVariableName = this.state.selectedList;
             
             if (listVariableName == null){
@@ -314,7 +323,9 @@ class AddinApp extends React.Component<any, any> {
     }
 
     commentPara() {
+        console.log("commentPara");
         window.Word.run(async (context: any) => {
+            console.log("commentPara inside");
             const range = context.document.getSelection();
             
             // Read the range text
@@ -342,7 +353,9 @@ class AddinApp extends React.Component<any, any> {
     }
 
     insertTemplate() {
+        console.log("insertTemplate");
         window.Word.run(async (context: any) => {
+            console.log("insertTemplate inside");
             var templateName = this.state.selectedChildTemplate;
             var templateOptions = this.state.childTemplateVariables;
 

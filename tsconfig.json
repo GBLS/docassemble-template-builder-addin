@@ -6,10 +6,10 @@
     "noImplicitAny": true,
     "module": "commonjs",
     "target": "es5",
-    "lib": ["es5", "es6", "dom"],
+    "lib": ["dom", "es2015.promise", "es2015.iterable", "es2015.symbol", "es5"],
     "jsx": "react"
   },
   "include": [
-    "./src/**/*"
+    "./src/*"
   ]
 }
