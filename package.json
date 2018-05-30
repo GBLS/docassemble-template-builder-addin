@@ -23,11 +23,12 @@
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-scripts": "1.1.4",
-    "ts-loader": "^4.3.0"
+    "ts-loader": "^4.3.0",
+    "cross-env": "^5.1.6"
   },
   "scripts": {
-    "start": "NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "build": "NODE_ENV=production node_modules/webpack/bin/webpack.js --display verbose",
+    "start": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "build": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --display verbose",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
