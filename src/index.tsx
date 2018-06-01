@@ -329,24 +329,45 @@ class AddinApp extends React.Component<any, any> {
         window.Word.run(async (context: any) => {
             console.log("commentPara inside");
             const range = context.document.getSelection();
-            
+
             // Read the range text
             range.load('text');
             await context.sync(); // Guess this has a performance penalty?
-            
+
+            // as we're using search instead of regex, should simplify this match #TODO
             // Regexp with 3 groups: {# , text between comments, #}. We match both whitespace and non-whitespace, including newlines
             var re = new RegExp('({#)([\\s\\S]*)(#})');
             var matches = re.exec(range.text);
 
             if (matches) { // index 1 is the uncommented string
-                // This is not correct as it removes formatting from the text
-                // This sample looks like it shows how to do it correctly: https://github.com/OfficeDev/Word-Add-in-JS-SpecKit/blob/master/scripts/boilerplate.js in addBoilerplateParagraph
-                // we should use var paragraphs = context.document.getSelection().paragraphs; and then loop through paragraph collection
-                range.insertText(matches[2],'Replace'); 
+                await context.sync();
+                var textToReplace = '{#';
+                                
+                var results = range.search('{#');
+                context.load(results);
+                
+                await context.sync();
+
+                for (var i = 0; i < results.items.length; i++) {
+                    results.items[i].insertText('', "Replace");
+                }
+
+                var results = range.search('#}');
+                context.load(results);
+                
+                await context.sync();
+
+                for (var i = 0; i < results.items.length; i++) {
+                    results.items[i].insertText('', "Replace");
+                }
+
                 console.log('Removed comments.')
             } else {
                 range.insertParagraph('{#','Before');
                 range.insertParagraph('#}','After');
+                range.expandTo(range.paragraphs.getFirst().getPrevious().getRange());
+                range.expandTo(range.paragraphs.getLast().getNext().getRange());
+
                 console.log('Added comments.')
                 // we should extend the selection to include the newly added text
             }
