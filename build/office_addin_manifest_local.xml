@@ -27,7 +27,8 @@
   <!-- Domains that will be allowed when navigating. For example, if you use ShowTaskpane and then have an href link, navigation will only be allowed if the domain is on this list. -->
   <AppDomains>
     <AppDomain>docassemble.org</AppDomain>
-    <AppDomain>nonprofittechy.com</AppDomain>
+    <AppDomain>gbls.github.io</AppDomain>
+    <AppDomain>localhost</AppDomain>
   </AppDomains>
   <!--End Basic Settings. -->
 
@@ -107,27 +108,6 @@
                   </Action>
                 </Control>
 
-                <Control xsi:type="Button" id="DTB.HelpButton">
-                  <Label resid="DTB.HelpButton.Label" />
-                  <Supertip>
-                    <!-- ToolTip title. resid must point to a ShortString resource. -->
-                    <Title resid="DTB.HelpButton.Label" />
-                    <!-- ToolTip description. resid must point to a LongString resource. -->
-                    <Description resid="DTB.TaskpaneButton.Tooltip" />
-                  </Supertip>
-                  <Icon>
-                    <bt:Image size="16" resid="DTB.tpicon_16x16" />
-                    <bt:Image size="32" resid="DTB.tpicon_32x32" />
-                    <bt:Image size="80" resid="DTB.tpicon_80x80" />
-                  </Icon>
-
-                  <!-- This is what happens when the command is triggered (E.g. click on the Ribbon). Supported actions are ExecuteFunction or ShowTaskpane. -->
-                  <Action xsi:type="ShowTaskpane">
-                    <TaskpaneId>ButtonId1</TaskpaneId>
-                    <!-- Provide a url resource id for the location that will be displayed on the task pane. -->
-                    <SourceLocation resid="DTB.Taskpane.Url" />
-                  </Action>
-                </Control>
               </Group>
             </OfficeTab>
           </ExtensionPoint>
@@ -150,7 +130,7 @@
       </bt:Urls>
       <!-- ShortStrings max characters==125. -->
       <bt:ShortStrings>
-        <bt:String id="DTB.TaskpaneButton.Label" DefaultValue="Docassemble Tasks" />
+        <bt:String id="DTB.TaskpaneButton.Label" DefaultValue="Show Docassemble" />
         <bt:String id="DTB.Group1Label" DefaultValue="Docassemble Template Builder" />
         <bt:String id="DTB.GetStarted.Title" DefaultValue="Get started with Docassemble Template Builder!" />
         <bt:String id="DTB.HelpButton.Label" DefaultValue="Help" />
