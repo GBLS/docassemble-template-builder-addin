@@ -189,6 +189,12 @@ class AddinApp extends React.Component<any, any> {
                         text="Toggle Comments"
                         primary={ true }
                     />
+                    <h2 className="ms-font-xl">Cleanup quotes</h2>
+                    <DefaultButton
+                        onClick={ this.cleanupSmartQuotes }
+                        text="Cleanup smart quotes"
+                        primary={ true }
+                    />
                 </main>
                 <div id="app-body" className={ this.state.serverName != null ? 'ms-welcome__main' : 'hiddenelement' }>
                     <DefaultButton
@@ -238,6 +244,7 @@ class AddinApp extends React.Component<any, any> {
                 await context.sync();
 
                 for (var i = 0; i < results.items.length; i++) {
+                    
                     results.items[i].insertText('{{ ' + textToInsert + ' }}', "Replace");
                 }
             }
@@ -334,12 +341,10 @@ class AddinApp extends React.Component<any, any> {
             range.load('text');
             await context.sync(); // Guess this has a performance penalty?
 
-            // as we're using search instead of regex, should simplify this match #TODO
             // Regexp with 3 groups: {# , text between comments, #}. We match both whitespace and non-whitespace, including newlines
             var re = new RegExp('({#)([\\s\\S]*)(#})');
-            var matches = re.exec(range.text);
 
-            if (matches) { // index 1 is the uncommented string
+            if (re.test(range.text)) { // index 1 is the uncommented string
                 await context.sync();
                 var textToReplace = '{#';
                                 
@@ -375,6 +380,69 @@ class AddinApp extends React.Component<any, any> {
         });
     }
 
+    cleanupSmartQuotes() {
+        console.log("cleanupSmartQuotes");
+        window.Word.run(async (context: any) => {
+
+            const range = context.document.getSelection();
+            const patternVars = "\\{\\{*\\}\\}";
+            const patternStatements = "\\{%*%\\}";
+            const searchOptions = {matchWildcards: true};
+
+            var results = context.document.body.search(patternVars, searchOptions);
+
+            context.load(results);                
+            await context.sync();
+
+            for (var i = 0; i < results.items.length; i++) {
+                console.log("# results " + results.items.length);
+                //replaceInRange(context, results.items[i], "\u201C",{},'"');
+                //var res = range.search("\u201C");
+                var res = results.items[i].search("\u201C");
+                context.load(res);  
+                await context.sync();
+                for (var j=0; j<res.items.length; j++) {
+                    res.items[j].insertText('"','Replace');
+                }
+                await context.sync();
+
+                res = results.items[i].search("\u201D");
+                context.load(res);  
+
+                await context.sync();
+                for (var j=0; j<res.items.length; j++) {
+                    res.items[j].insertText('"','Replace');
+                }
+                await context.sync();                
+                //replaceInRange(context, results.items[i], "\u201D",{},'"');
+            }
+
+            results = context.document.body.search(patternStatements, searchOptions);
+
+            context.load(results);                
+            await context.sync();
+
+            for (var i = 0; i < results.items.length; i++) {
+                var res = results.items[i].search("\u201C");
+                context.load(res);  
+                await context.sync();
+
+                for (var j=0; j<res.items.length; j++) {
+                    res.items[j].insertText('"','Replace');
+                }
+                await context.sync();
+                res = results.items[i].search("\u201D");
+                context.load(res);  
+                await context.sync();
+                for (var j=0; j<res.items.length; j++) {
+                    res.items[j].insertText('"','Replace');
+                }                
+            }
+
+            await context.sync();
+        });
+    }
+
     insertTemplate() {
         console.log("insertTemplate");
         window.Word.run(async (context: any) => {
@@ -387,7 +455,6 @@ class AddinApp extends React.Component<any, any> {
             }
             
             const range = context.document.getSelection();
-            
             if (templateOptions == "") {
                 var textBefore = '{{ include_docx_template("' + templateName + '") }}'; 
             } else {
@@ -701,6 +768,23 @@ class AddinApp extends React.Component<any, any> {
 
 /////////////////////////////////////////////////////////////////////
 // Helper functions
+
+function replaceInRange(context:any, range:any, searchPattern:any, searchOptions:any, replacement:any) {
+    console.log('searching: ' + searchPattern + ' replacing with: ' + replacement);
+    window.Word.run(async (context:any) => {
+        range.insertText('Hello','Before');
+        var results = range.search(searchPattern, searchOptions);
+        context.load(results);
+        await context.sync();
+
+        for (var i=0; i < results.items.length; i++) {
+            console.log(i);
+            results.items[i].insertText(replacement, 'Replace');
+        }
+
+        await context.sync();
+    });
+}
 
 // File handling
 function getDocumentAsCompressed(onGotAllSlices: any) {
