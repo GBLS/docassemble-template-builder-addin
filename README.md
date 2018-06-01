@@ -43,14 +43,13 @@ these steps:
 ```
 mkdir certs
 cd certs
-openssl genrsa -out ca.key 2048
-openssl req -x509 -new -nodes -key ca.key -sha256 -days 1024 -out ca.pem
+openssl req -new -key server.key -days 3650 -out server.csr
 ```
 
 The last command will ask you for some information.  Put in some
 information like the following.  The important line is the "Common
 Name," which should match whatever the server name will be (probably
-`localhost:8080`, but this can vary by platform).
+`localhost`, but this can vary by platform).
 
 ```
 Country Name (2 letter code) [AU]:US
@@ -62,48 +61,17 @@ Common Name (e.g. server FQDN or YOUR name) []:localhost
 Email Address []:qsteenhuis@gbls.org
 ```
 
-Convert the `.pem` to a `.crt` because you might need it:
+Next generate the signed certificate:
 
 ```
-openssl x509 -in ca.pem -inform PEM -out ca.crt
+openssl x509 -req -days 3650 -in server.csr -signkey server.key -out server.crt
 ```
 
-Then, create a private key:
+Double-click on the generated server.crt. Click "Install Certificate", choose "Local Machine" and then 
+choose "Place all certificates in the following store:". Browse for the "Trusted Root Certification Authority" store.
 
-```
-openssl genrsa -out server.key 2048
-openssl req -new -key server.key -out server.csr
-```
-
-The second command will ask for information again.  Put in the same
-information as before.
-
-```
-Country Name (2 letter code) [AU]:US
-State or Province Name (full name) [Some-State]:MA
-Locality Name (eg, city) []:Boston
-Organization Name (eg, company) [Internet Widgits Pty Ltd]:Greater Boston Legal Services
-Organizational Unit Name (eg, section) []:
-Common Name (e.g. server FQDN or YOUR name) []:localhost
-Email Address []:qsteenhuis@gbls.org
-
-Please enter the following 'extra' attributes
-to be sent with your certificate request
-A challenge password []:
-An optional company name []:
-```
-
-```
-openssl x509 -req -in server.csr -CA ca.pem -CAkey ca.key -CAcreateserial -out server.crt -days 730 -sha256
-```
-
-You can then install `ca.crt` as a certificate for a private
-"certificate authority" in your web browser.  For example, in Firefox
-you can go to Preferences, Privacy & Security, View Certificates,
-Authorities, and "Import" `ca.crt`.  In Chrome, you can go to
-Settings, Manage Certificates, Authorities, and "Import" `ca.crt`.
-When asked, indicate that you trust the certificate for identifying
-web sites.
+This will install the certificate for both IE and Edge, but not for Chrome or Firefox. This is enough to get the 
+add-in to work in Microsoft Word.
 
 In the Configuration of your docassemble server, you will need to set:
 
@@ -117,9 +85,15 @@ https://gbls.github.io.)
 A manifest file that is configured to work with https://localhost:8080
 can be found at [`build/office_addin_manifest_local.xml`].
 
+Sometimes you may need to clear the local Office cache to uninstall the add-in.
+To do so, remove the contents of this folder: `%LOCALAPPDATA%\Microsoft\Office\16.0\Wef\` (change 16 to 15 if you are running Office 2013)
+
+
 [Settings page]: https://github.com/GBLS/docassemble-template-builder-addin/settings
 [https://gbls.github.io/docassemble-template-builder-addin/index.html]: https://gbls.github.io/docassemble-template-builder-addin/index.html
 [docassemble]: https://docassemble.org
 [available as a URL]: https://gbls.github.io/docassemble-template-builder-addin/office_addin_manifest.xml
 [`build/office_addin_manifest_local.xml`]: https://gbls.github.io/docassemble-template-builder-addin/office_addin_manifest_local.xml
 [howto]: https://datacenteroverlords.com/2012/03/01/creating-your-own-ssl-certificate-authority/
+
+
