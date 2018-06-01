@@ -16,6 +16,7 @@
     "babel-core": "^6.26.3",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-es2016": "^6.24.1",
+    "cross-env": "^5.1.6",
     "es6-promise": "^4.2.4",
     "extract-text-webpack-plugin": "^3.0.2",
     "html-webpack-plugin": "^3.2.0",
@@ -23,8 +24,7 @@
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-scripts": "1.1.4",
-    "ts-loader": "^4.3.0",
-    "cross-env": "^5.1.6"
+    "ts-loader": "^4.3.0"
   },
   "scripts": {
     "start": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --https --key certs/server.key --cert certs/server.crt",

@@ -189,12 +189,14 @@ class AddinApp extends React.Component<any, any> {
                         text="Toggle Comments"
                         primary={ true }
                     />
+                </main>
+                <div id="app-body" className={ this.state.serverName != null ? 'ms-welcome__main' : 'hiddenelement' }>
                     <DefaultButton
                         iconProps={ { iconName: 'Cloud' } }
                         onClick={ this.changeServer }
                         text="Use another server"
                     />
-                </main>
+                </div>
             </div>);
     }
     
@@ -734,9 +736,9 @@ function validateUrl(value: string) {
     return /^https?:\/\/\S/i.test(value);
 }
 
-window.Office.initialize = () => {
+//window.Office.initialize = () => {
     ReactDOM.render(
         <AddinApp />,
         document.getElementById("app")
     );
-}
+//}
