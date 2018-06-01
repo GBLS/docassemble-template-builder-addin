@@ -736,9 +736,9 @@ function validateUrl(value: string) {
     return /^https?:\/\/\S/i.test(value);
 }
 
-//window.Office.initialize = () => {
+window.Office.initialize = () => {
     ReactDOM.render(
         <AddinApp />,
         document.getElementById("app")
     );
-//}
+}
