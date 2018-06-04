@@ -12,7 +12,7 @@ import { Checkbox } from 'office-ui-fabric-react/lib/Checkbox';
 import { initializeIcons } from 'office-ui-fabric-react/lib/Icons';
 initializeIcons();
 
-declare var Cookies:any;
+declare var Cookies: any;
 declare var window: any;
 declare module JSX {
     interface IntrinsicElements {
@@ -79,33 +79,33 @@ class AddinApp extends React.Component<any, any> {
     render() {
         return (
             <div>
-                <div className={ this.state.showServerName ? 'shownelement' : 'hiddenelement' }>
+                <div className={this.state.showServerName ? 'shownelement' : 'hiddenelement'}>
                     <TextField
                         label='Your docassemble server'
-                        onChanged={ this.handleServerNameChange }
+                        onChanged={this.handleServerNameChange}
                     />
-                    <div className={ this.state.showServerNameError ? 'errormessage' : 'hiddenelement' }>
+                    <div className={this.state.showServerNameError ? 'errormessage' : 'hiddenelement'}>
                         Please enter a valid URL.
                     </div>
                     <DefaultButton
                         text='Connect to server'
-                        onClick={ this.handleSetServer }
+                        onClick={this.handleSetServer}
                     />
                 </div>
-                <iframe id="server" src={ this.state.serverName ? this.state.serverName + '/officeaddin' : 'static/html/blank.html'} className={ this.state.frameStage == "wait" ? 'shownelement' : 'hiddenelement' } />
-                <main id="app-body" className={ this.state.showApp ? 'ms-welcome__main' : 'hiddenelement' }>
+                <iframe id="server" src={this.state.serverName ? this.state.serverName + '/officeaddin' : 'static/html/blank.html'} className={this.state.frameStage == "wait" ? 'shownelement' : 'hiddenelement'} />
+                <main id="app-body" className={this.state.showApp ? 'ms-welcome__main' : 'hiddenelement'}>
                     <DefaultButton
-                        iconProps={ { iconName: 'CloudUpload' } }
-                        onClick={ this.uploadFile }
+                        iconProps={{ iconName: 'CloudUpload' }}
+                        onClick={this.uploadFile}
                         text="Upload template to Playground"
                     />
-                    <div className={ this.state.uploadMessage != null ? 'shownelement' : 'hiddenelement' }>
-                        { this.state.uploadMessage }
+                    <div className={this.state.uploadMessage != null ? 'shownelement' : 'hiddenelement'}>
+                        {this.state.uploadMessage}
                     </div>
                     <Dropdown
                         label='Interview'
-                        onChanged={ this.handleInterviewChange }
-                        options={ this.state.interviewOptions }
+                        onChanged={this.handleInterviewChange}
+                        options={this.state.interviewOptions}
 
                     />
                     <h2 className="ms-font-xl">Insert Variables</h2>
@@ -113,22 +113,22 @@ class AddinApp extends React.Component<any, any> {
                         label="Variable Name"
                         allowFreeform={true}
                         autoComplete='on'
-                        onChanged={ this.handleVarChanged }
-                        options={ this.state.varOptions }
+                        onChanged={this.handleVarChanged}
+                        options={this.state.varOptions}
                     />
                     <Checkbox
                         label="Find and Replace All"
-                        onChange={ this.handleFindReplaceChange }
+                        onChange={this.handleFindReplaceChange}
                     />
                     <Dropdown
                         label="Apply Format"
-                        onChanged={ this.handleApplyFormatChanged }
-                        options={ this.applyFormatOptions }
+                        onChanged={this.handleApplyFormatChanged}
+                        options={this.applyFormatOptions}
                         defaultSelectedKey=""
                     />
                     <DefaultButton
-                        iconProps={ { iconName: 'CirclePlus' } }
-                        onClick={ this.insertVariable }
+                        iconProps={{ iconName: 'CirclePlus' }}
+                        onClick={this.insertVariable}
                         text="Insert Variable"
                     />
                     <h2 className="ms-font-xl">Branch Logic</h2>
@@ -136,76 +136,76 @@ class AddinApp extends React.Component<any, any> {
                         label="Expression or Variable Name"
                         allowFreeform={true}
                         autoComplete='on'
-                        onChanged={ this.handleExpressionChanged }
-                        options={ this.state.varOptions }
+                        onChanged={this.handleExpressionChanged}
+                        options={this.state.varOptions}
                     />
                     <DefaultButton
-                        onClick={ this.ifPara }
+                        onClick={this.ifPara}
                         text="If (Paragraph)"
-                        primary={ true }
+                        primary={true}
                     />
                     <DefaultButton
-                        onClick={ this.ifInline }
+                        onClick={this.ifInline}
                         text="If (Inline)"
-                        primary={ true }
+                        primary={true}
                     />
                     <h2 className="ms-font-xl">Insert List</h2>
                     <ComboBox
                         label="List Variable Name"
                         allowFreeform={true}
                         autoComplete='on'
-                        onChanged={ this.handleListChanged }
-                        options={ this.state.listOptions }
+                        onChanged={this.handleListChanged}
+                        options={this.state.listOptions}
                     />
                     <Checkbox
                         label="Display only checked items"
-                        onChange={ this.handleDisplayOnlyCheckedItems }
+                        onChange={this.handleDisplayOnlyCheckedItems}
                     />
                     <DefaultButton
-                        onClick={ this.listPara }
+                        onClick={this.listPara}
                         text="Add List"
-                        primary={ true }
+                        primary={true}
                     />
                     <h2 className="ms-font-xl">Insert a child template</h2>
                     <ComboBox
                         label="Child template name"
                         allowFreeform={true}
                         autoComplete='on'
-                        onChanged={ this.handleChildTemplateChanged }
-                        options={ this.state.childTemplateList }
+                        onChanged={this.handleChildTemplateChanged}
+                        options={this.state.childTemplateList}
                     />
                     <TextField
                         label='Set child template variables'
-                        onChanged={ this.handleChildTemplateVariablesChanged }
+                        onChanged={this.handleChildTemplateVariablesChanged}
                     />
                     <DefaultButton
-                        onClick={ this.insertTemplate }
+                        onClick={this.insertTemplate}
                         text="Insert template"
-                        primary={ true }
+                        primary={true}
                     />
                     <h2 className="ms-font-xl">Comment</h2>
                     <DefaultButton
-                        onClick={ this.commentPara }
+                        onClick={this.commentPara}
                         text="Toggle Comments"
-                        primary={ true }
+                        primary={true}
                     />
                     <h2 className="ms-font-xl">Cleanup quotes</h2>
                     <DefaultButton
-                        onClick={ this.cleanupSmartQuotes }
+                        onClick={this.cleanupSmartQuotes}
                         text="Cleanup smart quotes"
-                        primary={ true }
-                    />                    
+                        primary={true}
+                    />
                 </main>
-                <div id="app-body" className={ this.state.serverName != null ? 'ms-welcome__main' : 'hiddenelement' }>
+                <div id="app-body" className={this.state.serverName != null ? 'ms-welcome__main' : 'hiddenelement'}>
                     <DefaultButton
-                        iconProps={ { iconName: 'Cloud' } }
-                        onClick={ this.changeServer }
+                        iconProps={{ iconName: 'Cloud' }}
+                        onClick={this.changeServer}
                         text="Use another server"
                     />
                 </div>
             </div>);
     }
-    
+
     ////////////////////////////////////////////////////////////////
     // Docassemble code actions
     insertVariable() {
@@ -216,7 +216,7 @@ class AddinApp extends React.Component<any, any> {
             var variableReplaceAll = this.state.findReplace;
             var variableFormat = this.state.applyFormat;
 
-            if (variableName == null){
+            if (variableName == null) {
                 return;
             }
 
@@ -231,22 +231,16 @@ class AddinApp extends React.Component<any, any> {
 
             range.load('text');
 
-            if (! variableReplaceAll) {
-                range.insertText('{{ ' + variableName + ' }}','Replace');
+            if (!variableReplaceAll) {
+                range.insertText('{{ ' + variableName + ' }}', 'Replace');
             } else {
+                console.log('Replacing in range');
                 await context.sync();
-                var textToReplace = range.text;
+                var textToReplace = range.text.trim();
 
                 // FIXME: We need to ignore Jinja statements and expressions -- search looks inside them now
-                var results = context.document.body.search(textToReplace.trim(), {matchWholeWord: true}); // Word Online seems to select spaces next to a word you double-click on
-                context.load(results);
+                await replaceInRange(context, context.document.body, textToReplace, '{{ ' + textToInsert + ' }}', {matchWholeWord: true});
                 
-                await context.sync();
-
-                for (var i = 0; i < results.items.length; i++) {
-                    
-                    results.items[i].insertText('{{ ' + textToInsert + ' }}', "Replace");
-                }
             }
 
             await context.sync();
@@ -259,18 +253,18 @@ class AddinApp extends React.Component<any, any> {
             console.log("ifPara inside");
             var ifExpression = this.state.selectedExpression;
 
-            if (ifExpression == null){
+            if (ifExpression == null) {
                 return;
             }
 
             const range = context.document.getSelection();
-            
+
             // Read the range text
             range.load('text');
             var textBefore = '{%p if ' + ifExpression + ' %}';
 
-            range.insertParagraph(textBefore,'Before');
-            range.insertParagraph('{%p endif %}','After');
+            range.insertParagraph(textBefore, 'Before');
+            range.insertParagraph('{%p endif %}', 'After');
 
             await context.sync();
             console.log(`The selected text was ${range.text}.`);
@@ -283,7 +277,7 @@ class AddinApp extends React.Component<any, any> {
             console.log("ifInline inside");
             var ifExpression = this.state.selectedExpression;
 
-            if (ifExpression == null){
+            if (ifExpression == null) {
                 return;
             }
 
@@ -294,8 +288,8 @@ class AddinApp extends React.Component<any, any> {
             // Read the range text
             range.load('text');
 
-            range.insertText(textBefore,'Before');
-            range.insertText('{% endif %}','After');
+            range.insertText(textBefore, 'Before');
+            range.insertText('{% endif %}', 'After');
 
             await context.sync();
             console.log(`The selected text was ${range.text}.`);
@@ -307,24 +301,24 @@ class AddinApp extends React.Component<any, any> {
         window.Word.run(async (context: any) => {
             console.log("listPara inside");
             var listVariableName = this.state.selectedList;
-            
-            if (listVariableName == null){
+
+            if (listVariableName == null) {
                 return;
             }
-            
+
             const range = context.document.getSelection();
-            
+
             var onlyTrue = this.state.displayOnlyCheckedItems;
             if (onlyTrue) {
-                var textBefore = '{%p for item in ' + listVariableName + '.true_values() %}'; 
+                var textBefore = '{%p for item in ' + listVariableName + '.true_values() %}';
             } else {
-                var textBefore = '{%p for item in ' + listVariableName + '%}'; 
+                var textBefore = '{%p for item in ' + listVariableName + '%}';
             }
             // Read the range text
             range.load('text');
-            range.insertText('{{ item }}','Replace');
-            range.insertParagraph(textBefore,'Before');
-            range.insertParagraph('{%p endfor %}','After');
+            range.insertText('{{ item }}', 'Replace');
+            range.insertParagraph(textBefore, 'Before');
+            range.insertParagraph('{%p endfor %}', 'After');
 
             await context.sync();
             console.log(`The selected text was ${range.text}.`);
@@ -347,10 +341,10 @@ class AddinApp extends React.Component<any, any> {
             if (re.test(range.text)) { // index 1 is the uncommented string
                 await context.sync();
                 var textToReplace = '{#';
-                                
+
                 var results = range.search('{#');
                 context.load(results);
-                
+
                 await context.sync();
 
                 for (var i = 0; i < results.items.length; i++) {
@@ -359,7 +353,7 @@ class AddinApp extends React.Component<any, any> {
 
                 var results = range.search('#}');
                 context.load(results);
-                
+
                 await context.sync();
 
                 for (var i = 0; i < results.items.length; i++) {
@@ -368,8 +362,8 @@ class AddinApp extends React.Component<any, any> {
 
                 console.log('Removed comments.')
             } else {
-                range.insertParagraph('{#','Before');
-                range.insertParagraph('#}','After');
+                range.insertParagraph('{#', 'Before');
+                range.insertParagraph('#}', 'After');
                 range.expandTo(range.paragraphs.getFirst().getPrevious().getRange());
                 range.expandTo(range.paragraphs.getLast().getNext().getRange());
 
@@ -387,56 +381,30 @@ class AddinApp extends React.Component<any, any> {
             const range = context.document.getSelection();
             const patternVars = "\\{\\{*\\}\\}";
             const patternStatements = "\\{%*%\\}";
-            const searchOptions = {matchWildcards: true};
+            const searchOptions = { matchWildcards: true };
 
             var results = context.document.body.search(patternVars, searchOptions);
 
-            context.load(results);                
+            context.load(results);
             await context.sync();
 
             for (var i = 0; i < results.items.length; i++) {
-                console.log("# results " + results.items.length);
-                //replaceInRange(context, results.items[i], "\u201C",{},'"');
-                //var res = range.search("\u201C");
-                var res = results.items[i].search("\u201C");
-                context.load(res);  
-                await context.sync();
-                for (var j=0; j<res.items.length; j++) {
-                    res.items[j].insertText('"','Replace');
-                }
-                await context.sync();
-
-                res = results.items[i].search("\u201D");
-                context.load(res);  
-
-                await context.sync();
-                for (var j=0; j<res.items.length; j++) {
-                    res.items[j].insertText('"','Replace');
-                }
-                await context.sync();                
-                //replaceInRange(context, results.items[i], "\u201D",{},'"');
+                await replaceInRange(context, results.items[i], "\u201C",{},'"');
+                await replaceInRange(context, results.items[i], "\u201D",{},'"');
+                await replaceInRange(context, results.items[i], "\u2018",{},'"');
+                await replaceInRange(context, results.items[i], "\u2019",{},'"');                
             }
 
             results = context.document.body.search(patternStatements, searchOptions);
 
-            context.load(results);                
+            context.load(results);
             await context.sync();
 
             for (var i = 0; i < results.items.length; i++) {
-                var res = results.items[i].search("\u201C");
-                context.load(res);  
-                await context.sync();
-
-                for (var j=0; j<res.items.length; j++) {
-                    res.items[j].insertText('"','Replace');
-                }
-                await context.sync();
-                res = results.items[i].search("\u201D");
-                context.load(res);  
-                await context.sync();
-                for (var j=0; j<res.items.length; j++) {
-                    res.items[j].insertText('"','Replace');
-                }                
+                await replaceInRange(context, results.items[i], "\u201C",{},'"');
+                await replaceInRange(context, results.items[i], "\u201D",{},'"');
+                await replaceInRange(context, results.items[i], "\u2018",{},'"');
+                await replaceInRange(context, results.items[i], "\u2019",{},'"');
             }
 
             await context.sync();
@@ -450,27 +418,27 @@ class AddinApp extends React.Component<any, any> {
             var templateName = this.state.selectedChildTemplate;
             var templateOptions = this.state.childTemplateVariables;
 
-            if (templateName == null){
+            if (templateName == null) {
                 return;
             }
-            
+
             const range = context.document.getSelection();
             if (templateOptions == "") {
-                var textBefore = '{{ include_docx_template("' + templateName + '") }}'; 
+                var textBefore = '{{ include_docx_template("' + templateName + '") }}';
             } else {
-                var textBefore = '{{ include_docx_template("' + templateName + '", ' + templateOptions + ') }}'; 
+                var textBefore = '{{ include_docx_template("' + templateName + '", ' + templateOptions + ') }}';
             }
 
             // Read the range text
             range.load('text');
-            
-            range.insertText(textBefore,'Replace');
-            
+
+            range.insertText(textBefore, 'Replace');
+
             await context.sync();
             console.log(`The selected text was ${range.text}.`);
         });
     }
-    
+
     handleVarChanged = (option: IComboBoxOption, index: number, value: string): void => {
         console.log('handleVarChanged() is called: option = ' + JSON.stringify(option));
         if (option !== undefined) {
@@ -525,7 +493,7 @@ class AddinApp extends React.Component<any, any> {
             });
         }
     }
-    
+
     handleChildTemplateChanged = (option: IComboBoxOption, index: number, value: string): void => {
         console.log('handleChildTemplateChanged() is called: option = ' + JSON.stringify(option));
         if (option !== undefined) {
@@ -547,11 +515,11 @@ class AddinApp extends React.Component<any, any> {
 
     handleInterviewChange(newoption: any) {
         console.log("handleInterviewChange");
-        if (newoption.key){
-            this.setState({currentInterview: newoption.key});
+        if (newoption.key) {
+            this.setState({ currentInterview: newoption.key });
             this.fetchVars(newoption.key);
         }
-        else{
+        else {
             console.log("handleInterviewChange: no new option");
         }
     }
@@ -570,18 +538,18 @@ class AddinApp extends React.Component<any, any> {
 
     private applyFormatOptions =
         [
-            {key: "", text: "(none)"},
-            {key: "currency", text: "Currency (localized)"},
-            {key: "capitalize", text: "Capitalize"},
-            {key: "indefinite_article", text: "Indefinite Article"},
-            {key: "nice_number", text: "Nice Number"},
-            {key: "noun_plural", text: "Pluralize noun"},
-            {key: "noun_singular", text: "Singularize noun"},
-            {key: "ordinal_number", text: "Ordinal Number"},
-            {key: "title_case", text: "Title Case"},
-            {key: "verb_past", text: "Past tense verb"},
-            {key: "verb_present", text: "Present tense verb"},
-            {key: "fix_punctuation", text: "Fix punctuation"},
+            { key: "", text: "(none)" },
+            { key: "currency", text: "Currency (localized)" },
+            { key: "capitalize", text: "Capitalize" },
+            { key: "indefinite_article", text: "Indefinite Article" },
+            { key: "nice_number", text: "Nice Number" },
+            { key: "noun_plural", text: "Pluralize noun" },
+            { key: "noun_singular", text: "Singularize noun" },
+            { key: "ordinal_number", text: "Ordinal Number" },
+            { key: "title_case", text: "Title Case" },
+            { key: "verb_past", text: "Past tense verb" },
+            { key: "verb_present", text: "Present tense verb" },
+            { key: "fix_punctuation", text: "Fix punctuation" },
         ];
 
     handleApplyFormatChanged(newoption: any) {
@@ -597,12 +565,12 @@ class AddinApp extends React.Component<any, any> {
     }
 
     uploadFile() {
-        this.setState({uploadMessage: "Collecting file...", inUploadProcess: true});
+        this.setState({ uploadMessage: "Collecting file...", inUploadProcess: true });
         var oThis = this;
-        setTimeout(function(){
+        setTimeout(function () {
             oThis.showUploadFail()
         }, 10000);
-        var server : any = document.getElementById('server');
+        var server: any = document.getElementById('server');
         window.Office.context.document.getFilePropertiesAsync(function (asyncResult: any) {
             var fileName = asyncResult.value.url;
             console.log("the raw fileName is " + fileName);
@@ -610,7 +578,7 @@ class AddinApp extends React.Component<any, any> {
             fileName = fileName.replace(/\.docx\.docx/, '.docx');
             console.log("the fileName is " + fileName);
             var yamlFile = oThis.state.currentInterview;
-            if (yamlFile == null){
+            if (yamlFile == null) {
                 yamlFile = '';
             }
             var action = Object();
@@ -618,30 +586,30 @@ class AddinApp extends React.Component<any, any> {
             action.yamlFile = yamlFile;
             action.fileName = fileName;
             var theServerName = oThis.state.serverName;
-            getDocumentAsCompressed(function(docdataSlices: any) {
+            getDocumentAsCompressed(function (docdataSlices: any) {
                 console.log("in callback func");
                 var docdata: any = [];
                 for (var i = 0; i < docdataSlices.length; i++) {
                     docdata = docdata.concat(docdataSlices[i]);
                 }
 
-                var fileContent : any = new String();
+                var fileContent: any = new String();
                 for (var j = 0; j < docdata.length; j++) {
                     fileContent += String.fromCharCode(docdata[j]);
                 }
                 action.content = 'data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64,' + btoa(fileContent);
-                oThis.setState({uploadMessage: "Uploading file..."});
+                oThis.setState({ uploadMessage: "Uploading file..." });
                 server.contentWindow.postMessage(action, theServerName);
             });
         });
     }
-    
+
     fetchVars(yamlFile: string): void {
-        if (yamlFile == null){
+        if (yamlFile == null) {
             console.log("fetchVars: yamlFile was null");
             return;
         }
-        var server : any = document.getElementById('server');
+        var server: any = document.getElementById('server');
         var action = Object();
         action.action = "fetchVars";
         action.file = yamlFile;
@@ -649,12 +617,12 @@ class AddinApp extends React.Component<any, any> {
     }
 
     fetchFiles() {
-        var server : any = document.getElementById('server');
+        var server: any = document.getElementById('server');
         var action = Object();
         action.action = "fetchFiles";
         server.contentWindow.postMessage(action, this.state.serverName);
     }
-    
+
     handleServerNameChange(newvalue: any) {
         this.setState({ tempServerName: newvalue });
     }
@@ -662,14 +630,14 @@ class AddinApp extends React.Component<any, any> {
     handleSetServer(event: any) {
         console.log("handleSetServer");
         if (!validateUrl(this.state.tempServerName)) {
-            this.setState({showServerNameError: true});
+            this.setState({ showServerNameError: true });
             return;
         }
         else {
-            this.setState({showServerNameError: false});
+            this.setState({ showServerNameError: false });
         }
         Cookies.set('serverName', this.state.tempServerName, { expires: 999999 });
-        this.setState({frameStage: 'wait', showServerName: false, serverName: this.state.tempServerName});
+        this.setState({ frameStage: 'wait', showServerName: false, serverName: this.state.tempServerName });
     }
 
     receiveMessage(event: any) {
@@ -684,82 +652,82 @@ class AddinApp extends React.Component<any, any> {
         }
         console.log("Received action " + event.data.action);
         if (event.data.action == 'initialize') {
-            this.setState({showApp: true, frameStage: 'loaded'});
+            this.setState({ showApp: true, frameStage: 'loaded' });
             this.fetchFiles();
         }
         if (event.data.action == 'files') {
             var arr = Array();
             var n = event.data.files.length;
             for (var i = 0; i < n; i++) {
-                arr.push({key: event.data.files[i], text: event.data.files[i]});
+                arr.push({ key: event.data.files[i], text: event.data.files[i] });
             }
-            this.setState({interviewList: event.data.files, interviewOptions: arr});
+            this.setState({ interviewList: event.data.files, interviewOptions: arr });
         }
         if (event.data.action == 'vars') {
             var arr = Array();
             var arrList = Array();
             var n = event.data.vars.undefined_names.length;
-            for(var i = 0; i < n; ++i){
+            for (var i = 0; i < n; ++i) {
                 var variable_name = event.data.vars.undefined_names[i];
-                var newOption: IComboBoxOption = {key: variable_name, text: variable_name}
+                var newOption: IComboBoxOption = { key: variable_name, text: variable_name }
                 arr.push(newOption);
             }
             var n = event.data.vars.var_list.length;
-            for(var i = 0; i < n; ++i){
+            for (var i = 0; i < n; ++i) {
                 var info = event.data.vars.var_list[i];
-                if (!info.hide){
-                    var newOption: IComboBoxOption = {key: info.var, text: info.var}
+                if (!info.hide) {
+                    var newOption: IComboBoxOption = { key: info.var, text: info.var }
                     arr.push(newOption);
-                    if (!info.hasOwnProperty('iterable') || info.iterable){
-                        arrList.push(newOption);      
+                    if (!info.hasOwnProperty('iterable') || info.iterable) {
+                        arrList.push(newOption);
                     }
                 }
             }
-            arr.sort(function(a, b){
-                if(a.text < b.text) return -1;
-                if(a.text > b.text) return 1;
+            arr.sort(function (a, b) {
+                if (a.text < b.text) return -1;
+                if (a.text > b.text) return 1;
                 return 0;
             });
             var arrChildTemplates = Array();
             var n = event.data.vars.templates_list.length;
-            for(var i = 0; i < n; ++i){
+            for (var i = 0; i < n; ++i) {
                 var info = event.data.vars.templates_list[i];
-                if (/\.docx$/i.test(info.var)){
-                    var newOption: IComboBoxOption = {key: info.var, text: info.var}
+                if (/\.docx$/i.test(info.var)) {
+                    var newOption: IComboBoxOption = { key: info.var, text: info.var }
                     arrChildTemplates.push(newOption);
                 }
             }
             //console.log("varOptions is " + arr.length + " elements long from " + n);
             //console.log("varOptions is " + JSON.stringify(arr));
-            if (event.data.hasOwnProperty('uploaded')){
-                this.setState({uploadMessage: "Upload successful"});
+            if (event.data.hasOwnProperty('uploaded')) {
+                this.setState({ uploadMessage: "Upload successful" });
                 this.hideUploadMessage();
             }
-            this.setState({varOptions: arr, listOptions: arrList, varList: event.data.vars, vocabList: event.data.vocab, childTemplateList: arrChildTemplates});
+            this.setState({ varOptions: arr, listOptions: arrList, varList: event.data.vars, vocabList: event.data.vocab, childTemplateList: arrChildTemplates });
             this.fetchFiles();
         }
         if (event.data.action == 'fail') {
-            if (event.data.tried == 'uploadFile'){
+            if (event.data.tried == 'uploadFile') {
                 this.showUploadFail();
-            }            
+            }
         }
     }
 
-    hideUploadMessage(){
-        this.setState({inUploadProcess: false});
+    hideUploadMessage() {
+        this.setState({ inUploadProcess: false });
         var oThis = this;
-        setTimeout(function(){
-            oThis.setState({uploadMessage: null});
+        setTimeout(function () {
+            oThis.setState({ uploadMessage: null });
         }, 3000);
     }
 
-    showUploadFail(){
-        if (this.state.inUploadProcess){
-            this.setState({inUploadProcess: false, uploadMessage: "Upload failed."});
+    showUploadFail() {
+        if (this.state.inUploadProcess) {
+            this.setState({ inUploadProcess: false, uploadMessage: "Upload failed." });
             this.hideUploadMessage();
         }
     }
-    
+
     componentDidMount() {
         console.log("adding listener");
         window.addEventListener("message", this.receiveMessage, false);
@@ -778,19 +746,20 @@ class AddinApp extends React.Component<any, any> {
             return context.sync();
         });
 
+    }
 }
 
 /////////////////////////////////////////////////////////////////////
 // Helper functions
 
-async function replaceInRange(context:any, range:any, query:String, replacement:String) {
+async function replaceInRange(context: any, range: any, query: String, replacement: String, searchOptions = {}) {
     console.log('replaceInRange ' + query + ' : ' + replacement);
-    var results = range.search(query);
-    results.load('text');               
+    var results = range.search(query, searchOptions);
+    results.load('text');
     await context.sync();
 
-    for (var i=0; i<results.items.length; i++) {
-        results.items[i].insertText(replacement,'Replace');
+    for (var i = 0; i < results.items.length; i++) {
+        results.items[i].insertText(replacement, 'Replace');
     }
 
     return context.sync();
@@ -799,23 +768,23 @@ async function replaceInRange(context:any, range:any, query:String, replacement:
 // File handling
 function getDocumentAsCompressed(onGotAllSlices: any) {
     console.log("in getDocumentAsCompressed");
-    window.Office.context.document.getFileAsync(window.Office.FileType.Compressed, {  }, 
-                                                function (result: any) {
-                                                    if (result.status == "succeeded") {
-                                                        // If the getFileAsync call succeeded, then
-                                                        // result.value will return a valid File Object.
-                                                        var myFile = result.value;
-                                                        var sliceCount = myFile.sliceCount;
-                                                        var slicesReceived = 0, gotAllSlices = true, docdataSlices : any = [];
-                                                        //app.showNotification("File size:" + myFile.size + " #Slices: " + sliceCount);
+    window.Office.context.document.getFileAsync(window.Office.FileType.Compressed, {},
+        function (result: any) {
+            if (result.status == "succeeded") {
+                // If the getFileAsync call succeeded, then
+                // result.value will return a valid File Object.
+                var myFile = result.value;
+                var sliceCount = myFile.sliceCount;
+                var slicesReceived = 0, gotAllSlices = true, docdataSlices: any = [];
+                //app.showNotification("File size:" + myFile.size + " #Slices: " + sliceCount);
 
-                                                        // Get the file slices.
-                                                        getSliceAsync(myFile, 0, sliceCount, gotAllSlices, docdataSlices, slicesReceived, onGotAllSlices);
-                                                    }
-                                                    else {
-                                                        //app.showNotification("Error:", result.error.message);
-                                                    }
-                                                });
+                // Get the file slices.
+                getSliceAsync(myFile, 0, sliceCount, gotAllSlices, docdataSlices, slicesReceived, onGotAllSlices);
+            }
+            else {
+                //app.showNotification("Error:", result.error.message);
+            }
+        });
 }
 
 function getSliceAsync(file: any, nextSlice: any, sliceCount: any, gotAllSlices: any, docdataSlices: any, slicesReceived: any, onGotAllSlices: any) {
