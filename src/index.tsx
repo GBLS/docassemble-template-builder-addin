@@ -389,10 +389,10 @@ class AddinApp extends React.Component<any, any> {
             await context.sync();
 
             for (var i = 0; i < results.items.length; i++) {
-                await replaceInRange(context, results.items[i], "\u201C",{},'"');
-                await replaceInRange(context, results.items[i], "\u201D",{},'"');
-                await replaceInRange(context, results.items[i], "\u2018",{},'"');
-                await replaceInRange(context, results.items[i], "\u2019",{},'"');                
+                await replaceInRange(context, results.items[i], "\u201C",'"',{});
+                await replaceInRange(context, results.items[i], "\u201D",'"',{});
+                await replaceInRange(context, results.items[i], "\u2018","'",{});
+                await replaceInRange(context, results.items[i], "\u2019","'",{});                
             }
 
             results = context.document.body.search(patternStatements, searchOptions);
@@ -401,11 +401,10 @@ class AddinApp extends React.Component<any, any> {
             await context.sync();
 
             for (var i = 0; i < results.items.length; i++) {
-                await replaceInRange(context, results.items[i], "\u201C",{},'"');
-                await replaceInRange(context, results.items[i], "\u201D",{},'"');
-                await replaceInRange(context, results.items[i], "\u2018",{},'"');
-                await replaceInRange(context, results.items[i], "\u2019",{},'"');
-            }
+                await replaceInRange(context, results.items[i], "\u201C",'"',{});
+                await replaceInRange(context, results.items[i], "\u201D",'"',{});
+                await replaceInRange(context, results.items[i], "\u2018","'",{});
+                await replaceInRange(context, results.items[i], "\u2019","'",{});              }
 
             await context.sync();
         });
