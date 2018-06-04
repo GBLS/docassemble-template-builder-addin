@@ -74,6 +74,7 @@ class AddinApp extends React.Component<any, any> {
         this.changeServer = this.changeServer.bind(this);
         this.hideUploadMessage = this.hideUploadMessage.bind(this);
         this.showUploadFail = this.showUploadFail.bind(this);
+        this.cleanupSmartQuotes = this.cleanupSmartQuotes.bind(this);
     }
 
     render() {
@@ -347,7 +348,7 @@ class AddinApp extends React.Component<any, any> {
             if (re.test(range.text)) { // index 1 is the uncommented string
                 await context.sync();
                 var textToReplace = '{#';
-                                
+                
                 var results = range.search('{#');
                 context.load(results);
                 
@@ -383,7 +384,7 @@ class AddinApp extends React.Component<any, any> {
     cleanupSmartQuotes() {
         console.log("cleanupSmartQuotes");
         window.Word.run(async (context: any) => {
-
+            
             const range = context.document.getSelection();
             const patternVars = "\\{\\{*\\}\\}";
             const patternStatements = "\\{%*%\\}";
