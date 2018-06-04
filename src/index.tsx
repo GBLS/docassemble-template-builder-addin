@@ -195,7 +195,7 @@ class AddinApp extends React.Component<any, any> {
                         onClick={ this.cleanupSmartQuotes }
                         text="Cleanup smart quotes"
                         primary={ true }
-                    />
+                    />                    
                 </main>
                 <div id="app-body" className={ this.state.serverName != null ? 'ms-welcome__main' : 'hiddenelement' }>
                     <DefaultButton
@@ -764,27 +764,37 @@ class AddinApp extends React.Component<any, any> {
     componentDidMount() {
         console.log("adding listener");
         window.addEventListener("message", this.receiveMessage, false);
-    }   
+    }
+
+    // Example of calling a subroutine that needs to handle context -- we need await keyword
+    replaceX() {
+        console.log("replaceX");
+        window.Word.run(async (context: any) => {
+            const range = context.document.getSelection();
+            var query = "X";
+            var replacement = "gabagool";
+
+            await replaceInRange(context, range, query, replacement);
+
+            return context.sync();
+        });
+
 }
 
 /////////////////////////////////////////////////////////////////////
 // Helper functions
 
-function replaceInRange(context:any, range:any, searchPattern:any, searchOptions:any, replacement:any) {
-    console.log('searching: ' + searchPattern + ' replacing with: ' + replacement);
-    window.Word.run(async (context:any) => {
-        range.insertText('Hello','Before');
-        var results = range.search(searchPattern, searchOptions);
-        context.load(results);
-        await context.sync();
+async function replaceInRange(context:any, range:any, query:String, replacement:String) {
+    console.log('replaceInRange ' + query + ' : ' + replacement);
+    var results = range.search(query);
+    results.load('text');               
+    await context.sync();
 
-        for (var i=0; i < results.items.length; i++) {
-            console.log(i);
-            results.items[i].insertText(replacement, 'Replace');
-        }
+    for (var i=0; i<results.items.length; i++) {
+        results.items[i].insertText(replacement,'Replace');
+    }
 
-        await context.sync();
-    });
+    return context.sync();
 }
 
 // File handling
