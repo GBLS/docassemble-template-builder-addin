@@ -1,5 +1,19 @@
+# Docassemble Template Builder
+
 This is a Microsoft Word Add-in (2013+) that helps with building
 templates for [docassemble] guided interviews.
+
+Testing it is easy! To test this interview in Microsoft Word Online:
+
+1. Open Word Online (for example, from inside OneDrive or SharePoint).
+1. Download this [Manifest file](https://github.com/GBLS/docassemble-template-builder-addin/raw/master/build/office_addin_manifest.xml)
+1. Install the add-in by going to Insert | Office Add-ins, then Manage My Add-ins | Upload an add-in
+1. Click the Docassemble icon to open the Add-in's sidebar.
+1. Put in the address of your Docassemble server, running a version > 0.2.64
+
+## If you want to contribute to the add-in
+
+Contact Jonathan or Quinten to get permission to commit your changes.
 
 To download and generate for the first time:
 
@@ -14,7 +28,7 @@ This will compile the JavaScript and put it into the `build/static/js`
 folder.  It will also create `build/index.html`, which is a straight
 copy of `public/index.html`.
 
-To deploy the app on GitHub Pages, do:
+To deploy the app on GitHub Pages (requires permission), do: 
 
 ```
 npm run deploy
@@ -34,6 +48,13 @@ The `office_addin_manifest.xml` file can be imported into Office as an
 add-in.  This file is also [available as a URL].
 
 ## Using a local server
+
+To start a local server, just type
+
+```
+npm run start
+```
+in the project directory.
 
 The add-in needs to operate over HTTPS.  If you want to run `npm run
 start` in order to use a local web server to host the application, you
@@ -88,6 +109,12 @@ can be found at [`build/office_addin_manifest_local.xml`].
 Sometimes you may need to clear the local Office cache to uninstall the add-in.
 To do so, remove the contents of this folder: `%LOCALAPPDATA%\Microsoft\Office\16.0\Wef\` (change 16 to 15 if you are running Office 2013)
 
+Testing with Office Online is the simplest. If you want to test with Word Desktop, you will need:
+1. Create a network shared folder
+2. Place the [local manifest file](https://raw.githubusercontent.com/GBLS/docassemble-template-builder-addin/master/build/office_addin_manifest_local.xml) in the folder
+3. Change Word security settings to look in the shared folder for the manifest
+
+See instructions [here](https://docs.microsoft.com/en-us/office/dev/add-ins/testing/create-a-network-shared-folder-catalog-for-task-pane-and-content-add-ins).
 
 [Settings page]: https://github.com/GBLS/docassemble-template-builder-addin/settings
 [https://gbls.github.io/docassemble-template-builder-addin/index.html]: https://gbls.github.io/docassemble-template-builder-addin/index.html
